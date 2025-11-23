@@ -1,13 +1,13 @@
-name: SonarCloud Analysis
+name: CI with SonarCloud
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
-  build-and-analyze:
+  build-test-analyze:
     runs-on: ubuntu-latest
     
     steps:
@@ -21,16 +21,33 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
+        cache: 'maven'
 
-    - name: Build Java backend with tests
+    - name: Build and test Spring Boot
       run: |
-        mvn -B clean package
+        mvn -B clean compile test
         mvn jacoco:report
 
-    - name: Build React frontend
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+
+    - name: Install React dependencies
       run: |
         cd frontend
         npm ci
+
+    - name: Build React app
+      run: |
+        cd frontend
+        npm run build
+
+    - name: Test React app
+      run: |
+        cd frontend
         npm test -- --coverage --watchAll=false
 
     - name: SonarCloud Scan
