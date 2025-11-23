@@ -28,6 +28,8 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+    	<sonar.organization>your-organization-name</sonar.organization>
+    	<sonar.projectKey>your-organization_your-project-name</sonar.projectKey>
 	</properties>
 	<dependencies>
 	<!-- default tools -->

@@ -1,2 +1,4 @@
 *.env
-.VSCodeCounter
+.VSCodeCounter/
+.vscode/
+.sonarlint/
