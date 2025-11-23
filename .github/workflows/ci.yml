@@ -25,6 +25,7 @@ jobs:
 
     - name: Build and test Spring Boot
       run: |
+        cd backend/task-manager
         mvn -B clean compile test
         mvn jacoco:report
 
