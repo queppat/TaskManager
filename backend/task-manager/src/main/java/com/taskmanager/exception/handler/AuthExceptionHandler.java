@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.taskmanager.exception.InvalidRefreshTokenException;
 import com.taskmanager.exception.RefreshTokenNotFoundException;
+import com.taskmanager.exception.UserExistException;
 import com.taskmanager.exception.UserNotFoundException;
 import com.taskmanager.utils.ExceptionResponseModel;
 
@@ -43,6 +44,13 @@ public class AuthExceptionHandler {
         return ExceptionResponseModel.createModel(404, ex.getMessage());
     }
 
-    //TODO: add UserExistException handler
+    @ExceptionHandler(UserExistException.class)
+    public ResponseEntity<Object> handleUesrExistException(UserExistException ex, HttpServletRequest request){
+
+        log.warn("(409) User already exist {} {}: {}",
+            request.getMethod(), request.getRequestURI(), ex.getMessage());
+
+        return ExceptionResponseModel.createModel(409, ex.getMessage());
+    }
 }
 

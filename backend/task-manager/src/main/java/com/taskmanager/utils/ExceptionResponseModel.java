@@ -12,6 +12,7 @@ public class ExceptionResponseModel {
         return switch(status) {
             case 400 ->  badRequestResponse("Bad request", status, message);
             case 404 -> notFoundResponse("Not found", status, message);
+            case 409 -> conflictResponse("Conflict", status, message);
             case 500 -> internalServerResponse("Internal server error", status, message);
             default -> null;
         };
@@ -30,6 +31,11 @@ public class ExceptionResponseModel {
     private static ResponseEntity<Object> internalServerResponse(String title, Integer status, String message){
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getReponseModel(title, status, message));
+    }
+
+    private static ResponseEntity<Object> conflictResponse(String title, Integer status, String message){
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(getReponseModel(title, status, message));
     }
 
     private static Map<?,?> getReponseModel(String title, Integer status, String message){
