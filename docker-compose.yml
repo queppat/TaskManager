@@ -36,7 +36,7 @@ services:
     env_file:
       - .env
     environment:
-      REACT_APP_API_URL: http://localhost:${BACKEND_PORT}
+      REACT_APP_API_URL: http://backend:8080/api
     ports:
       - "${FRONTEND_PORT}:5173"
     depends_on:

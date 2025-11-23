@@ -42,5 +42,7 @@ public class AuthExceptionHandler {
 
         return ExceptionResponseModel.createModel(404, ex.getMessage());
     }
+
+    //TODO: add UserExistException handler
 }
 
