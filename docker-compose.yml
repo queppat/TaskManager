@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: taskmanager-db-dev
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${DATABASE_PORT}:5432"
+
+  backend:
+    build:
+      context: ./backend/task-manager
+      dockerfile: Dockerfile.dev
+    container_name: taskmanager-backend-dev
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "${BACKEND_PORT}:8080"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: taskmanager-frontend-dev
+    env_file:
+      - .env
+    environment:
+      REACT_APP_API_URL: http://backend:8080/api
+    ports:
+      - "${FRONTEND_PORT}:5173"
+    depends_on:
+      - backend
