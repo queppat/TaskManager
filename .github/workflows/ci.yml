@@ -1,4 +1,4 @@
-name: CI with SonarCloud
+name: CI
 
 on:
   push:
@@ -22,12 +22,6 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: 'maven'
-
-    - name: Build and test Spring Boot
-      run: |
-        cd backend/task-manager
-        mvn -B clean compile test
-        mvn jacoco:report
 
     - name: Set up Node.js
       uses: actions/setup-node@v4

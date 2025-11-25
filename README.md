@@ -1,6 +1,6 @@
 ### Ссылки
 
-- Ссылка на [SonarCloud]()
+- Ссылка на [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=queppat_TaskManager&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=queppat_TaskManager)
 
 ## Оценка времени
 
@@ -15,10 +15,12 @@ E = 11 часов
 
 ### Задание 2: CRUD-функционал для списка задач
 
-- O: n часов
-- BG: k часов
-- P: m часов
-- E = (m + n + 4*k) / 6
+- O: 5 часов
+- BG: 7 часов
+- P: 12 часов
+- E = (12 + 5 + 4*7) / 6 = 7.5
+
+E = 
 
 ### Задание 3: Страница списка задач с фильтрацией
 
