@@ -7,9 +7,6 @@ on:
     branches: [ "main", "dev" ]
   workflow_dispatch:
 
-permissions:
-  pull-requests: read
-
 jobs:
   Analysis:
     runs-on: ubuntu-latest
@@ -18,7 +15,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn -B compile -DskipTests
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
@@ -28,4 +34,4 @@ jobs:
           args:
             -Dsonar.projectKey=queppat_TaskManager
             -Dsonar.organization=queppat
-          projectBaseDir: .
+            -Dsonar.java.binaries=target/classes
