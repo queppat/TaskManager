@@ -113,7 +113,10 @@ public class JwtTokenProvider {
             .build()
             .parseClaimsJws(token)
             .getBody();
-        return claims.getSubject();
+
+        String email = claims.getSubject();
+        log.debug("Extracted email from token claims: {}", email);
+        return email;
     }
 
     public String getEmailFromRefreshToken(String token){

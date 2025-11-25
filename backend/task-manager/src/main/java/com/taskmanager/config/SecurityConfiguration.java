@@ -1,4 +1,4 @@
-package com.taskmanager.config; 
+package com.taskmanager.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,51 +44,42 @@ public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf-> csrf.disable())
-            .sessionManagement(session->session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .exceptionHandling(exception -> exception
-                .authenticationEntryPoint((request, response, authException) -> 
-                    handleSecurityError(response, 
-                        "Authentication required", 
-                        HttpStatus.UNAUTHORIZED)
-                )
-                .accessDeniedHandler((request, response, accessDeniedException) -> 
-                    handleSecurityError(response,
-                        "Access denied",
-                        HttpStatus.FORBIDDEN)
-                )
-            )
-            .authorizeHttpRequests(request ->
-                request.requestMatchers(
-                    HttpMethod.OPTIONS, "/**").permitAll()
-                    
-                    .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/api/tasks/**").hasAnyRole("USER","ADMIN")
-                    .requestMatchers("/api/auth/**", "/error").permitAll()
-                    .anyRequest()
-                    .authenticated()
-            )
-            
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> handleSecurityError(response,
+                                "Authentication required",
+                                HttpStatus.UNAUTHORIZED))
+                        .accessDeniedHandler((request, response, accessDeniedException) -> handleSecurityError(response,
+                                "Access denied",
+                                HttpStatus.FORBIDDEN)))
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/tasks/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/auth/**", "/error").permitAll()
+                        .anyRequest()
+                        .authenticated())
+
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-    private void handleSecurityError(HttpServletResponse response, 
-                                   String message, 
-                                   HttpStatus status) throws IOException {
+    private void handleSecurityError(HttpServletResponse response,
+            String message,
+            HttpStatus status) throws IOException {
         response.setStatus(status.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        
+
         var errorResponse = Map.of(
-            "title", status == HttpStatus.UNAUTHORIZED ? "Unauthorized" : "Forbidden",
-            "status", status.value(),
-            "message", message,
-            "timestamp", LocalDateTime.now()
-        );
-        
+                "title", status == HttpStatus.UNAUTHORIZED ? "Unauthorized" : "Forbidden",
+                "status", status.value(),
+                "message", message,
+                "timestamp", LocalDateTime.now());
+
         objectMapper.writeValue(response.getWriter(), errorResponse);
     }
 
@@ -99,7 +90,7 @@ public class SecurityConfiguration {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
-        
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

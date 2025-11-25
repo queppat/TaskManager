@@ -1,16 +1,8 @@
-import { createContext, useState, useContext, useEffect, useMemo } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { authService } from '../services/authService';
 
 const AuthContext = createContext();
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

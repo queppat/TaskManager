@@ -1,4 +1,4 @@
-package com.taskmanager.model.dto.entity;
+package com.taskmanager.model.dto.response;
 
 import java.time.LocalDateTime;
 
@@ -11,13 +11,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class TaskDTO {
+@NoArgsConstructor
+public class CreateTaskResponse {
     
     private Long id;
-    private Long ownerId;
-    private String title;
     private String description;
     private LocalDateTime deadline;
     private TaskStatus status;

@@ -27,31 +27,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, 
-                                  HttpServletResponse response, 
-                                  FilterChain filterChain) throws ServletException, IOException {
-        
+    protected void doFilterInternal(HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
+
         String token = getTokenFromRequest(request);
-        
-        if (token != null && jwtTokenProvider.validateAccessToken(token)) {
-            try {
-                String email = jwtTokenProvider.getEmailFromAccessToken(token);
-                
-                UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(email);
 
-                var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        if (token != null) {
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                log.debug("User {} authenticated successfully", email);
-                
-            } catch (Exception e) {
-                log.error("Failed to process JWT token: {}", e.getMessage());
-                SecurityContextHolder.clearContext();
+            boolean isValid = jwtTokenProvider.validateAccessToken(token);
+
+            if (isValid) {
+                try {
+                    String email = jwtTokenProvider.getEmailFromAccessToken(token);
+
+                    UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(email);
+                    log.debug("UserDetails loaded successfully for: {}", email);
+
+                    var authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+                            userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                    log.debug("Authentication set in SecurityContext for: {}", email);
+
+                } catch (Exception e) {
+                    log.error("Failed to process JWT token: {}", e.getMessage());
+                    SecurityContextHolder.clearContext();
+                }
             }
         }
-        
         filterChain.doFilter(request, response);
     }
 
