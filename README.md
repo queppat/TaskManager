@@ -1,6 +1,6 @@
 ### Ссылки
 
-- Ссылка на [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=queppat_TaskManager&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=queppat_TaskManager)
+- Ссылка на Sonar[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=queppat_TaskManager&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=queppat_TaskManager)
 
 ## Оценка времени
 

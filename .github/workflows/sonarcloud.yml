@@ -7,20 +7,45 @@ on:
     branches: [ "main", "dev" ]
   workflow_dispatch:
 
-permissions:
-  pull-requests: read
-
 jobs:
   Analysis:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK for Backend
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build Backend
+        run: |
+          cd backend/task-manager
+          mvn -B compile -DskipTests
+
+      - name: Setup Node.js for Frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args:
+          args: |
             -Dsonar.projectKey=queppat_TaskManager
             -Dsonar.organization=queppat
-          projectBaseDir: .
+            -Dsonar.sources=backend/task-manager/src/main/java,frontend/src
+            -Dsonar.java.binaries=backend/task-manager/target/classes
+            -Dsonar.exclusions=**/node_modules/**,**/target/**,**/*.md,**/test/**
