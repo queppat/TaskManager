@@ -1,7 +1,5 @@
 {
-    "postman.settings.dotenv-detection-notification-visibility": false,
-    "sonarlint.connectedMode.project": {
-        "connectionId": "TaskManager",
-        "projectKey": "queppat_TaskManager"
-    }
+    "java.project.sourcePaths": [
+        ""
+    ]
 }

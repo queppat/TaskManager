@@ -1,6 +1,7 @@
 import { Form, Input, Button, Divider } from 'antd';
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const RegisterForm = ({ onRegister, loading = false }) => {
     const [form] = Form.useForm();
@@ -105,3 +106,11 @@ const RegisterForm = ({ onRegister, loading = false }) => {
 };
 
 export default RegisterForm;
+
+RegisterForm.propTypes = {
+    onRegister: PropTypes.node.isRequired
+};
+
+RegisterForm.propTypes = {
+    loading: PropTypes.node.isRequired
+};
