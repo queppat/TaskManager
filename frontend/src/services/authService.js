@@ -12,8 +12,8 @@ export const authService = {
   async register(userData) {
     const response = await api.post('/auth/register', userData);
 
-    if(response.data.accessToken){
-        localStorage.setItem('accessToken', response.data.accessToken)
+    if (response.data.accessToken) {
+      localStorage.setItem('accessToken', response.data.accessToken)
     }
     return response.data;
   },
