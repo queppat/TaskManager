@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.taskmanager.exception.DeleteFailedException;
 import com.taskmanager.exception.TaskNotFoundException;
 import com.taskmanager.exception.UserNotFoundException;
 import com.taskmanager.model.domain.Task;

@@ -26,8 +26,8 @@ jobs:
       - name: Build Backend
         run: |
           cd backend/task-manager
-          mvn -B compile -DskipTests
-
+          mvn -B clean package
+          
       - name: Setup Node.js for Frontend
         uses: actions/setup-node@v4
         with:
@@ -37,6 +37,10 @@ jobs:
         run: |
           cd frontend
           npm install
+      - name: Run Frontend tests with coverage
+        run: |
+          cd frontend
+          npx vitest run src/utils/math.test.js src/tests/basic.test.js --coverage
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216

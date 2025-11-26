@@ -1,82 +1,49 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { message, Card } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { authService } from '../../services/authService';
+import LoginForm from '../../components/Auth/LoginForm';
+import './Login.css';
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
-  });
-  const [error, setError] = useState('');
+const LoginPage = () => {
     const [loading, setLoading] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
-  const { login } = useAuth();
-  const navigate = useNavigate();
+    const handleLogin = async (formData) => {
+        setLoading(true);
+        try {
+            await authService.login(formData);
+            messageApi.success('Вход в аккаунт произошел успешно!');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+            setTimeout(() => {
+                globalThis.location.href = '/dashboard';
+            }, 1000);
+        } catch (error) {
+            messageApi.error(error.response?.data?.message || 'Ошибка аутентификации');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+    return (
+        <div className="login-container">
+            {contextHolder}
+            <Card className="login-card">
+                <div className="login-header">
+                    <div className="login-icon">
+                        <UserOutlined />
+                    </div>
+                    <h1 className="login-title">Вход в аккаунт</h1>
+                    <p className="login-subtitle">Введите ваши учетные данные</p>
+                </div>
 
-    try {
-      await login(credentials);
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="auth-container">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h2>Login</h2>
-        
-        {error && <div className="error-message">{error}</div>}
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            required
-          />
+                <LoginForm
+                    onLogin={handleLogin}
+                    loading={loading}
+                />
+            </Card>
         </div>
-
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <button type="submit" disabled={loading} className="btn-primary">
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-
-        <p className="auth-link">
-          Don't have an account? <Link to="/register">Register here</Link>
-        </p>
-      </form>
-    </div>
-  );
+    );
 };
 
-export default Login;
+export default LoginPage;

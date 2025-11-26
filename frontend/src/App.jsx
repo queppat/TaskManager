@@ -1,13 +1,22 @@
-import { AuthProvider } from './context/AuthContext';
+import { ConfigProvider } from 'antd';
 import AppRouter from './routers/AppRouter';
-import './App.css';
+import { AuthProvider } from './context/AuthContext';
 
-function App() {
+const App = () => {
   return (
-    <AuthProvider>
-      <AppRouter />
-    </AuthProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#1890ff',
+          borderRadius: 8,
+        },
+      }}
+    >
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
+    </ConfigProvider>
   );
-}
+};
 
 export default App;
