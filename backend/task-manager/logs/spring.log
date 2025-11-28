@@ -1,466 +1,500 @@
-2025-11-26T13:53:21.848+03:00  INFO 147132 --- [TaskManager] [main] c.t.TaskManagerApplicationTests          : Starting TaskManagerApplicationTests using Java 21.0.8 with PID 147132 (started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
-2025-11-26T13:53:21.859+03:00  INFO 147132 --- [TaskManager] [main] c.t.TaskManagerApplicationTests          : No active profile set, falling back to 1 default profile: "default"
-2025-11-26T13:53:23.132+03:00  INFO 147132 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-11-26T13:53:23.243+03:00  INFO 147132 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 2 JPA repository interfaces.
-2025-11-26T13:53:23.905+03:00  INFO 147132 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-11-26T13:53:23.968+03:00  INFO 147132 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
-2025-11-26T13:53:24.006+03:00  INFO 147132 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-11-26T13:53:24.284+03:00  INFO 147132 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-11-26T13:53:24.311+03:00  INFO 147132 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-26T13:53:25.357+03:00  WARN 147132 --- [TaskManager] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 08001
-2025-11-26T13:53:25.358+03:00 ERROR 147132 --- [TaskManager] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
-2025-11-26T13:53:25.361+03:00  WARN 147132 --- [TaskManager] [main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
-
-org.hibernate.exception.JDBCConnectionException: unable to obtain isolated JDBC connection [Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.] [n/a]
-	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:100) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:334) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:563) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:388) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:293) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:292) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:281) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:280) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:27) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:112) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:111) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:201) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:170) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:59) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:142) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:47) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:46) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) ~[.cp/:na]
-Caused by: org.postgresql.util.PSQLException: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:373) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:57) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:279) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.Driver.makeConnection(Driver.java:448) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.8.jar:42.7.8]
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-6.3.3.jar:na]
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-6.3.3.jar:na]
-	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	... 118 common frames omitted
-Caused by: java.net.ConnectException: В соединении отказано
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592) ~[na:na]
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-	at java.base/java.net.Socket.connect(Socket.java:751) ~[na:na]
-	at org.postgresql.core.PGStream.createSocket(PGStream.java:261) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.core.PGStream.<init>(PGStream.java:122) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146) ~[postgresql-42.7.8.jar:42.7.8]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:289) ~[postgresql-42.7.8.jar:42.7.8]
-	... 132 common frames omitted
-
-2025-11-26T13:53:25.379+03:00 ERROR 147132 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-2025-11-26T13:53:25.381+03:00  WARN 147132 --- [TaskManager] [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-2025-11-26T13:53:25.427+03:00  INFO 147132 --- [TaskManager] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-11-26T13:53:25.459+03:00 ERROR 147132 --- [TaskManager] [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:563) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:388) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:293) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:292) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:281) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:280) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:27) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:112) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:111) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:201) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:170) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:59) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:142) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:47) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:46) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) ~[.cp/:na]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:276) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.14.jar:6.2.14]
-	... 98 common frames omitted
-Caused by: org.hibernate.HibernateException: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:191) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:87) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentWithDefaults(JdbcEnvironmentInitiator.java:186) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:410) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	... 113 common frames omitted
-
-2025-11-26T13:53:25.468+03:00  WARN 147132 --- [TaskManager] [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.taskmanager.TaskManagerApplicationTests@5a31abe9]
-
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@13ddaffb testClass = com.taskmanager.TaskManagerApplicationTests, locations = [], classes = [com.taskmanager.TaskManagerApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@35f8a9d3, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@a50ae65, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5f14a673, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@2eb79cbe, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7923f5b3, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@7a639ec5, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@9f85bd06], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:388) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:382) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:293) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:292) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:281) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
-	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:280) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:27) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:112) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:111) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.12.2.jar:5.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:128) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:201) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:170) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:59) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:142) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:94) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:47) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:46) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:52) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:70) ~[junit-platform-launcher-1.12.2.jar:1.12.2]
-	at org.eclipse.jdt.internal.junit5.runner.JUnit5TestReference.run(JUnit5TestReference.java:100) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:40) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:520) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:748) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:443) ~[.cp/:na]
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:211) ~[.cp/:na]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.2.14.jar:6.2.14]
-	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461) ~[spring-boot-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:563) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:144) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110) ~[spring-boot-test-3.5.8.jar:3.5.8]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.2.14.jar:6.2.14]
-	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.2.14.jar:6.2.14]
-	... 78 common frames omitted
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:276) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.14.jar:6.2.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.14.jar:6.2.14]
-	... 98 common frames omitted
-Caused by: org.hibernate.HibernateException: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:191) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:87) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentWithDefaults(JdbcEnvironmentInitiator.java:186) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:410) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.6.36.Final.jar:6.6.36.Final]
-	... 113 common frames omitted
-
-2025-11-26T13:56:11.558+03:00  INFO 149081 --- [TaskManager] [main] c.t.TaskManagerApplicationTests          : Starting TaskManagerApplicationTests using Java 21.0.8 with PID 149081 (started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
-2025-11-26T13:56:11.560+03:00  INFO 149081 --- [TaskManager] [main] c.t.TaskManagerApplicationTests          : No active profile set, falling back to 1 default profile: "default"
-2025-11-26T13:56:12.286+03:00  INFO 149081 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-11-26T13:56:12.354+03:00  INFO 149081 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 2 JPA repository interfaces.
-2025-11-26T13:56:12.803+03:00  INFO 149081 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-11-26T13:56:12.852+03:00  INFO 149081 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
-2025-11-26T13:56:12.881+03:00  INFO 149081 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-11-26T13:56:13.103+03:00  INFO 149081 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-11-26T13:56:13.127+03:00  INFO 149081 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-11-26T13:56:13.268+03:00  INFO 149081 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@87f6ab5
-2025-11-26T13:56:13.269+03:00  INFO 149081 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-11-26T13:56:13.324+03:00  INFO 149081 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-11-28T09:04:05.260+03:00  INFO 16435 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 16435 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T09:04:05.273+03:00  INFO 16435 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T09:04:06.765+03:00  INFO 16435 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T09:04:06.903+03:00  INFO 16435 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 2 JPA repository interfaces.
+2025-11-28T09:04:07.897+03:00  INFO 16435 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T09:04:07.921+03:00  INFO 16435 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T09:04:07.921+03:00  INFO 16435 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T09:04:07.989+03:00  INFO 16435 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T09:04:07.990+03:00  INFO 16435 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2624 ms
+2025-11-28T09:04:08.185+03:00  INFO 16435 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T09:04:08.261+03:00  INFO 16435 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T09:04:08.300+03:00  INFO 16435 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T09:04:08.612+03:00  INFO 16435 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T09:04:08.644+03:00  INFO 16435 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T09:04:08.953+03:00  INFO 16435 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5f2b9da8
+2025-11-28T09:04:08.954+03:00  INFO 16435 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T09:04:09.023+03:00  INFO 16435 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
-	Database version: 15.15
+	Database version: 16.10
 	Autocommit mode: undefined/unknown
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-11-26T13:56:13.982+03:00  INFO 149081 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-11-26T13:56:14.034+03:00  WARN 149081 --- [TaskManager] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
-2025-11-26T13:56:14.034+03:00  WARN 149081 --- [TaskManager] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
-2025-11-26T13:56:14.040+03:00  INFO 149081 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-11-26T13:56:14.314+03:00  INFO 149081 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-11-26T13:56:14.917+03:00  INFO 149081 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
-2025-11-26T13:56:15.232+03:00  INFO 149081 --- [TaskManager] [main] c.t.TaskManagerApplicationTests          : Started TaskManagerApplicationTests in 4.075 seconds (process running for 9.989)
-2025-11-26T13:56:15.796+03:00  INFO 149081 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-11-26T13:56:15.798+03:00  INFO 149081 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-11-26T13:56:15.800+03:00  INFO 149081 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T09:04:09.687+03:00  INFO 16435 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T09:04:09.760+03:00  INFO 16435 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T09:04:09.916+03:00  INFO 16435 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T09:04:10.584+03:00  INFO 16435 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T09:04:10.793+03:00  INFO 16435 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T09:04:10.799+03:00  INFO 16435 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 6.635 seconds (process running for 7.267)
+2025-11-28T09:04:10.800+03:00  INFO 16435 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T09:04:10.803+03:00  INFO 16435 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T09:04:10.806+03:00  INFO 16435 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T09:04:10.811+03:00  INFO 16435 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T09:04:10.815+03:00  INFO 16435 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T09:04:30.890+03:00  INFO 16886 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 16886 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T09:04:30.894+03:00  INFO 16886 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T09:04:32.156+03:00  INFO 16886 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T09:04:32.296+03:00  INFO 16886 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 2 JPA repository interfaces.
+2025-11-28T09:04:33.310+03:00  INFO 16886 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T09:04:33.336+03:00  INFO 16886 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T09:04:33.337+03:00  INFO 16886 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T09:04:33.409+03:00  INFO 16886 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T09:04:33.410+03:00  INFO 16886 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2428 ms
+2025-11-28T09:04:33.634+03:00  INFO 16886 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T09:04:33.704+03:00  INFO 16886 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T09:04:33.764+03:00  INFO 16886 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T09:04:34.110+03:00  INFO 16886 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T09:04:34.145+03:00  INFO 16886 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T09:04:34.491+03:00  INFO 16886 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27dfd12b
+2025-11-28T09:04:34.492+03:00  INFO 16886 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T09:04:34.556+03:00  INFO 16886 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T09:04:35.307+03:00  INFO 16886 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T09:04:35.368+03:00  INFO 16886 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T09:04:35.514+03:00  INFO 16886 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T09:04:36.238+03:00  INFO 16886 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T09:04:36.486+03:00  INFO 16886 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T09:04:36.492+03:00  INFO 16886 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 6.589 seconds (process running for 7.14)
+2025-11-28T09:05:40.461+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T09:05:40.462+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T09:05:40.464+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-28T09:05:41.240+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T09:05:41.242+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T09:05:41.242+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.UserService      : (loginUser) User registered successfully: username@gmail.com
+2025-11-28T09:05:41.272+03:00  INFO 16886 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.AuthController  : (POST /api/auth/login) (200) Login proccess fineshed successfully for 
+2025-11-28T09:11:18.508+03:00  INFO 16886 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T09:11:18.514+03:00  INFO 16886 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T09:11:18.523+03:00  INFO 16886 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T09:11:18.528+03:00  INFO 16886 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T09:11:18.541+03:00  INFO 16886 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T10:43:54.731+03:00  INFO 67290 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 67290 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T10:43:54.733+03:00  INFO 67290 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T10:43:55.168+03:00  INFO 67290 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T10:43:55.211+03:00  INFO 67290 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 2 JPA repository interfaces.
+2025-11-28T10:43:55.589+03:00  INFO 67290 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T10:43:55.599+03:00  INFO 67290 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T10:43:55.600+03:00  INFO 67290 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T10:43:55.631+03:00  INFO 67290 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T10:43:55.631+03:00  INFO 67290 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 867 ms
+2025-11-28T10:43:55.724+03:00  INFO 67290 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T10:43:55.764+03:00  INFO 67290 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T10:43:55.800+03:00  INFO 67290 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T10:43:55.982+03:00  INFO 67290 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T10:43:56.003+03:00  INFO 67290 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T10:43:56.239+03:00  INFO 67290 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27dfd12b
+2025-11-28T10:43:56.240+03:00  INFO 67290 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T10:43:56.296+03:00  INFO 67290 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T10:43:56.875+03:00  INFO 67290 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T10:43:56.942+03:00  INFO 67290 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T10:43:57.093+03:00  INFO 67290 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T10:43:57.776+03:00  INFO 67290 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T10:43:58.021+03:00  INFO 67290 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T10:43:58.027+03:00  INFO 67290 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 3.703 seconds (process running for 3.952)
+2025-11-28T10:44:08.437+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T10:44:08.438+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T10:44:08.440+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-28T10:44:08.988+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T10:44:08.988+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T10:44:08.990+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T10:44:08.990+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T10:44:08.990+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T10:44:08.990+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T10:44:09.012+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T10:44:09.012+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T10:44:11.903+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:11.903+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:11.930+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:11.930+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:19.995+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (deleteTask) delete for user with email: username@gmail.com was: 1
+2025-11-28T10:44:19.998+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (DELETE /api/tasks/1) Delete task successfully for user: username@gmail.com
+2025-11-28T10:44:20.047+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:20.050+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:22.577+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (deleteTask) delete for user with email: username@gmail.com was: 1
+2025-11-28T10:44:22.583+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (DELETE /api/tasks/2) Delete task successfully for user: username@gmail.com
+2025-11-28T10:44:22.624+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:22.626+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:24.837+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (deleteTask) delete for user with email: username@gmail.com was: 1
+2025-11-28T10:44:24.843+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (DELETE /api/tasks/4) Delete task successfully for user: username@gmail.com
+2025-11-28T10:44:24.879+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:24.881+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:28.340+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:28.340+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:44:28.341+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:28.341+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:44:36.231+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.AuthController  : (POST /api/auth/logout) (200) Successful logout
+2025-11-28T10:44:44.653+03:00  WARN 67290 --- [TaskManager] [http-nio-8080-exec-4] c.t.e.handler.GlobalExceptionHandler     : (404) User not found in POST /api/auth/login: User for login not found
+2025-11-28T10:44:53.014+03:00  WARN 67290 --- [TaskManager] [http-nio-8080-exec-5] c.t.e.handler.GlobalExceptionHandler     : (404) User not found in POST /api/auth/login: User for login not found
+2025-11-28T10:45:00.974+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T10:45:00.976+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T10:45:00.977+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.UserService      : (loginUser) User registered successfully: username@gmail.com
+2025-11-28T10:45:00.978+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.AuthController  : (POST /api/auth/login) (200) Login proccess fineshed successfully for 
+2025-11-28T10:45:03.051+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:45:03.052+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:45:03.053+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:45:03.053+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:45:18.293+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:45:18.352+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:45:18.355+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:45:18.399+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:45:18.401+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:46:03.135+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:46:03.146+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:46:03.149+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:46:03.192+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:46:03.194+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:46:24.890+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:46:24.900+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:46:24.903+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:46:24.943+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:46:24.945+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:46:33.293+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:46:33.295+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:46:33.331+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:46:33.333+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:47:26.624+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:47:26.626+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:47:26.668+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:47:26.671+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:48:10.994+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:48:11.012+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:48:11.056+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:48:11.058+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:49:07.065+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:49:07.075+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:49:07.077+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:49:07.124+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:49:07.126+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:49:22.091+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:49:22.100+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:49:22.103+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:49:22.142+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:49:22.144+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:51:31.300+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:51:31.302+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:53:18.834+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:53:18.835+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:54:25.786+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T10:54:25.795+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T10:54:25.798+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T10:54:25.836+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:54:25.838+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:55:03.864+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:55:03.866+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:55:17.714+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:55:17.714+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:55:17.716+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:55:17.716+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:55:26.562+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:55:26.563+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:55:26.599+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:55:26.601+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:55:52.665+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:55:52.667+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:55:52.788+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:55:52.790+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:56:30.912+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:56:30.914+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:56:30.954+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:56:30.957+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T10:56:44.098+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T10:56:44.100+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T10:56:44.218+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T10:56:44.220+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:01:28.170+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:01:28.171+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:01:28.171+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:01:28.492+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:01:28.492+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:01:28.493+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:01:28.493+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:01:40.056+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:01:40.058+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: {]
+2025-11-28T11:01:40.099+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:01:40.101+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:01:57.394+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:01:57.396+03:00  INFO 67290 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:04:30.169+03:00  INFO 67290 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T11:04:30.174+03:00  INFO 67290 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T11:04:30.182+03:00  INFO 67290 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:04:30.186+03:00  INFO 67290 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T11:04:30.196+03:00  INFO 67290 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T11:04:40.430+03:00  INFO 76669 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 76669 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T11:04:40.434+03:00  INFO 76669 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T11:04:41.684+03:00  INFO 76669 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T11:04:41.802+03:00  INFO 76669 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 102 ms. Found 2 JPA repository interfaces.
+2025-11-28T11:04:42.902+03:00  INFO 76669 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T11:04:42.929+03:00  INFO 76669 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T11:04:42.930+03:00  INFO 76669 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T11:04:43.002+03:00  INFO 76669 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T11:04:43.003+03:00  INFO 76669 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2483 ms
+2025-11-28T11:04:43.220+03:00  INFO 76669 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T11:04:43.293+03:00  INFO 76669 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T11:04:43.348+03:00  INFO 76669 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T11:04:43.702+03:00  INFO 76669 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T11:04:43.737+03:00  INFO 76669 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T11:04:44.081+03:00  INFO 76669 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27dfd12b
+2025-11-28T11:04:44.082+03:00  INFO 76669 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T11:04:44.147+03:00  INFO 76669 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T11:04:44.943+03:00  INFO 76669 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T11:04:45.019+03:00  INFO 76669 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:04:45.237+03:00  INFO 76669 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T11:04:46.057+03:00  INFO 76669 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T11:04:46.275+03:00  INFO 76669 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T11:04:46.281+03:00  INFO 76669 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 6.813 seconds (process running for 7.381)
+2025-11-28T11:04:52.620+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T11:04:52.620+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T11:04:52.623+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-28T11:04:53.126+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:04:53.126+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:04:53.151+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:04:53.151+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:05:06.812+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : Приходит на бэк deadline: 2025-11-29T05:08
+2025-11-28T11:05:06.842+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:05:06.845+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: username@gmail.com
+2025-11-28T11:05:06.915+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:05:06.917+03:00  INFO 76669 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:05:30.995+03:00  INFO 76669 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T11:05:31.000+03:00  INFO 76669 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T11:05:31.009+03:00  INFO 76669 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:05:31.013+03:00  INFO 76669 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T11:05:31.023+03:00  INFO 76669 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T11:06:16.491+03:00  INFO 77686 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 77686 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T11:06:16.495+03:00  INFO 77686 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T11:06:17.586+03:00  INFO 77686 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T11:06:17.679+03:00  INFO 77686 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 2 JPA repository interfaces.
+2025-11-28T11:06:18.298+03:00  INFO 77686 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T11:06:18.313+03:00  INFO 77686 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T11:06:18.313+03:00  INFO 77686 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T11:06:18.361+03:00  INFO 77686 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T11:06:18.362+03:00  INFO 77686 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1789 ms
+2025-11-28T11:06:18.504+03:00  INFO 77686 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T11:06:18.545+03:00  INFO 77686 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T11:06:18.583+03:00  INFO 77686 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T11:06:18.813+03:00  INFO 77686 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T11:06:18.838+03:00  INFO 77686 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T11:06:19.079+03:00  INFO 77686 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27dfd12b
+2025-11-28T11:06:19.080+03:00  INFO 77686 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T11:06:19.125+03:00  INFO 77686 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T11:06:19.743+03:00  INFO 77686 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T11:06:19.800+03:00  INFO 77686 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:06:19.965+03:00  INFO 77686 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T11:06:20.683+03:00  INFO 77686 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T11:06:20.924+03:00  INFO 77686 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T11:06:20.931+03:00  INFO 77686 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 5.347 seconds (process running for 5.904)
+2025-11-28T11:06:26.731+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T11:06:26.732+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T11:06:26.736+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-11-28T11:06:27.292+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : Приходит на бэк deadline: 2025-11-29T05:08
+2025-11-28T11:06:27.345+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:06:27.366+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: username@gmail.com
+2025-11-28T11:06:27.366+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : Отдается с бэка: null
+2025-11-28T11:06:27.493+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:06:27.496+03:00  INFO 77686 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:06:34.374+03:00  INFO 77686 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T11:06:34.379+03:00  INFO 77686 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T11:06:34.389+03:00  INFO 77686 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:06:34.394+03:00  INFO 77686 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T11:06:34.407+03:00  INFO 77686 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T11:08:35.944+03:00  INFO 79407 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 79407 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T11:08:35.948+03:00  INFO 79407 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T11:08:37.060+03:00  INFO 79407 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T11:08:37.160+03:00  INFO 79407 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 2 JPA repository interfaces.
+2025-11-28T11:08:37.831+03:00  INFO 79407 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T11:08:37.847+03:00  INFO 79407 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T11:08:37.848+03:00  INFO 79407 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T11:08:37.894+03:00  INFO 79407 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T11:08:37.895+03:00  INFO 79407 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1868 ms
+2025-11-28T11:08:38.032+03:00  INFO 79407 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T11:08:38.073+03:00  INFO 79407 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T11:08:38.112+03:00  INFO 79407 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T11:08:38.338+03:00  INFO 79407 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T11:08:38.363+03:00  INFO 79407 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T11:08:38.604+03:00  INFO 79407 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4aeaff64
+2025-11-28T11:08:38.605+03:00  INFO 79407 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T11:08:38.653+03:00  INFO 79407 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T11:08:39.252+03:00  INFO 79407 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T11:08:39.305+03:00  INFO 79407 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:08:39.445+03:00  INFO 79407 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T11:08:40.151+03:00  INFO 79407 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T11:08:40.372+03:00  INFO 79407 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T11:08:40.378+03:00  INFO 79407 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 5.35 seconds (process running for 5.891)
+2025-11-28T11:08:46.799+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T11:08:46.800+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T11:08:46.803+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-28T11:08:47.311+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:08:47.311+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:08:47.335+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:08:47.335+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:08:56.218+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:08:56.254+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/5) Update task successfully for user: username@gmail.com
+2025-11-28T11:08:56.310+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:08:56.313+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:09:59.308+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T11:09:59.355+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T11:09:59.358+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T11:09:59.409+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:09:59.412+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:10:14.945+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T11:10:14.957+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T11:10:14.960+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T11:10:15.015+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:10:15.018+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:10:22.877+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:10:22.883+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/12) Update task successfully for user: username@gmail.com
+2025-11-28T11:10:22.928+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:10:22.930+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:10:35.519+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T11:10:35.530+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T11:10:35.532+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T11:10:35.579+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:10:35.582+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:10:53.384+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T11:10:53.394+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T11:10:53.396+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T11:10:53.457+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:10:53.460+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:11.510+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : Email from user: username@gmail.com
+2025-11-28T11:11:11.520+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.TaskService      : (createTask) successfully for user: username@gmail.com
+2025-11-28T11:11:11.523+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.TaskController  : (200) (POST /api/tasks) Create task successfully for user: username@gmail.com
+2025-11-28T11:11:11.566+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:11.568+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:17.616+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-7] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:17.618+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-7] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:19.999+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-8] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:20.004+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-8] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:21.343+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:21.345+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:32.594+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.TaskService      : (updateTask) task updated successfully for user: username@gmail.com
+2025-11-28T11:11:32.600+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.TaskController  : (200) (PATCH /api/tasks/15) Update task successfully for user: username@gmail.com
+2025-11-28T11:11:32.655+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:32.657+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:36.341+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:36.342+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:43.219+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:43.222+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-3] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:11:44.447+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:11:44.449+03:00  INFO 79407 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:12:09.034+03:00  INFO 79407 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T11:12:09.039+03:00  INFO 79407 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T11:12:09.047+03:00  INFO 79407 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:12:09.054+03:00  INFO 79407 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T11:12:09.063+03:00  INFO 79407 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-28T11:14:52.494+03:00  INFO 82485 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Starting TaskManagerApplication using Java 21.0.8 with PID 82485 (/home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager/target/classes started by queppat in /home/queppat/Projects/Java_projects/Intern/TaskManager/backend/task-manager)
+2025-11-28T11:14:52.508+03:00  INFO 82485 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-11-28T11:14:53.634+03:00  INFO 82485 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28T11:14:53.757+03:00  INFO 82485 --- [TaskManager] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 2 JPA repository interfaces.
+2025-11-28T11:14:54.695+03:00  INFO 82485 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-28T11:14:54.720+03:00  INFO 82485 --- [TaskManager] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-28T11:14:54.721+03:00  INFO 82485 --- [TaskManager] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.49]
+2025-11-28T11:14:54.791+03:00  INFO 82485 --- [TaskManager] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-28T11:14:54.792+03:00  INFO 82485 --- [TaskManager] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2215 ms
+2025-11-28T11:14:55.027+03:00  INFO 82485 --- [TaskManager] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28T11:14:55.106+03:00  INFO 82485 --- [TaskManager] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.36.Final
+2025-11-28T11:14:55.180+03:00  INFO 82485 --- [TaskManager] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-28T11:14:55.645+03:00  INFO 82485 --- [TaskManager] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28T11:14:55.689+03:00  INFO 82485 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-28T11:14:56.154+03:00  INFO 82485 --- [TaskManager] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27dfd12b
+2025-11-28T11:14:56.156+03:00  INFO 82485 --- [TaskManager] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-28T11:14:56.244+03:00  INFO 82485 --- [TaskManager] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.10
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-28T11:14:57.173+03:00  INFO 82485 --- [TaskManager] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28T11:14:57.247+03:00  INFO 82485 --- [TaskManager] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:14:57.424+03:00  INFO 82485 --- [TaskManager] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-28T11:14:58.161+03:00  INFO 82485 --- [TaskManager] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-28T11:14:58.363+03:00  INFO 82485 --- [TaskManager] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-28T11:14:58.369+03:00  INFO 82485 --- [TaskManager] [main] com.taskmanager.TaskManagerApplication   : Started TaskManagerApplication in 6.785 seconds (process running for 7.31)
+2025-11-28T11:15:08.561+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-28T11:15:08.562+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-28T11:15:08.565+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-28T11:15:09.085+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:15:09.085+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-2] com.taskmanager.service.TaskService      : (getUserTasks) Successfully return tasks for user: username@gmail.com
+2025-11-28T11:15:09.092+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-2] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:15:09.092+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.TaskController  : (200) (GET /api/tasks) Get tasks successfully for user: username@gmail.com
+2025-11-28T11:25:18.485+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:18.487+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:18.487+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.UserService      : (loginUser) User registered successfully: username@gmail.com
+2025-11-28T11:25:18.514+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.AuthController  : (POST /api/auth/login) (200) Login proccess fineshed successfully for 
+2025-11-28T11:25:20.412+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:20.412+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:25:20.414+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:25:33.647+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:33.648+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:33.649+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-9] com.taskmanager.service.UserService      : (loginUser) User registered successfully: username@gmail.com
+2025-11-28T11:25:33.650+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-9] c.taskmanager.controller.AuthController  : (POST /api/auth/login) (200) Login proccess fineshed successfully for 
+2025-11-28T11:25:37.836+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:37.836+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:25:37.838+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:37.838+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:25:37.838+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:25:37.839+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-1] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:25:37.839+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-10] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:25:37.839+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-10] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:26:09.206+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:26:09.207+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:26:09.207+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] com.taskmanager.service.UserService      : (loginUser) User registered successfully: username@gmail.com
+2025-11-28T11:26:09.208+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-4] c.taskmanager.controller.AuthController  : (POST /api/auth/login) (200) Login proccess fineshed successfully for 
+2025-11-28T11:26:13.352+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:26:13.354+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:26:13.354+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:26:13.355+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-5] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:26:13.360+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateAccessToken) Access token generated successfully for: username@gmail.com
+2025-11-28T11:26:13.361+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.utils.JwtTokenProvider   : (generateRefreshToken) Refresh token generated successfully for: username@gmail.com
+2025-11-28T11:26:13.361+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] com.taskmanager.service.UserService      : (refreshTokens) User tokens refresh successfully: username@gmail.com
+2025-11-28T11:26:13.362+03:00  INFO 82485 --- [TaskManager] [http-nio-8080-exec-6] c.taskmanager.controller.AuthController  : (POST /api/auth/refresh) (200) Tokens refresh fineshed successfully for token
+2025-11-28T11:28:18.040+03:00  INFO 82485 --- [TaskManager] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-28T11:28:18.047+03:00  INFO 82485 --- [TaskManager] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-28T11:28:18.055+03:00  INFO 82485 --- [TaskManager] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28T11:28:18.059+03:00  INFO 82485 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-28T11:28:18.069+03:00  INFO 82485 --- [TaskManager] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

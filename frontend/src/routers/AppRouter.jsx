@@ -5,7 +5,7 @@ import Register from '../pages/Register/Register';
 import Home from '../pages/Home/Home';
 import { useAuth } from '../hooks/useAuth';
 import NotFound from '../pages/NotFound/NotFound';
-import Dashboard from '../pages/Tasks/Dashboard';
+import Dashboard from '../pages/Dashboard/Dashboard';
 
 const AppRouter = () => {
   const { isAuthenticated, loading } = useAuth();

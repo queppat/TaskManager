@@ -1,28 +1,58 @@
 import api from './api';
 
 export const taskService = {
-    async getAllTasks(credentials) {
-        const response = await api.post('/auth/login', credentials);
-        if (response.data.accessToken) {
-            localStorage.setItem('accessToken', response.data.accessToken);
+
+    async getAllTasks(page = 0, size = 10) {
+        try {
+            const response = await api.get('/tasks',{
+                params: {
+                    page: page,
+                    size: size
+                }
+            });
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
         }
-        return response.data;
     },
 
-    async register(userData) {
-        const response = await api.post('/auth/register', userData);
+    async createTask(taskData) {
+        try {
+            const response = await api.post('/tasks', taskData);
 
-        if (response.data.accessToken) {
-            localStorage.setItem('accessToken', response.data.accessToken)
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
         }
-        return response.data;
     },
 
-    logout() {
-        localStorage.removeItem('accessToken');
+    async updateTask(taskId, updateData) {
+        try {
+            const response = await api.patch(`/tasks/${taskId}`, updateData);
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+        }
     },
 
-    isAuthenticated() {
-        return !!localStorage.getItem('accessToken');
+    async deleteTask(taskId) {
+        try {
+            const response = await api.delete(`/tasks/${taskId}`)
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error);
+        }
     },
+
+    handleError(error) {
+        if (error.response?.data) {
+            const backendError = error.response.data;
+            throw new Error(backendError.message || 'Произошла ошибка');
+        } else {
+            throw new Error('Сетевая ошибка или сервер недоступен');
+        }
+    }
 };

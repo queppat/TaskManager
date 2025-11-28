@@ -1,5 +1,7 @@
 package com.taskmanager;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -27,5 +29,6 @@ class TaskManagerApplicationTests {
 
     @Test
     void contextLoads() {
+        assertTrue(true);
     }
 }

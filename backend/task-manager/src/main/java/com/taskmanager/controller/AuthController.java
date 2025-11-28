@@ -66,7 +66,8 @@ public class AuthController {
                 .header(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString())
                 .body(registerResponse);
 
-        log.info("(POST /api/auth/login) (200) Login proccess fineshed successfully for ", loginRequest.getEmail());
+        log.info("(POST /api/auth/login) (200) Login proccess fineshed successfully for ",
+                loginRequest.getEmail());
 
         return response;
     }
@@ -95,11 +96,11 @@ public class AuthController {
     public ResponseEntity<Object> logout(
             @CookieValue(required = false) String refreshToken) {
 
-        ResponseCookie logoutCoockie = cookieUtil.createLogoutCookie();
+        ResponseCookie logoutCookie = cookieUtil.createLogoutCookie();
 
         log.info("(POST /api/auth/logout) (200) Successful logout");
         return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, logoutCoockie.toString())
+                .header(HttpHeaders.SET_COOKIE, logoutCookie.toString())
                 .body(Map.of("message", "Successful logout"));
     }
 

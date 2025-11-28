@@ -1,4 +1,3 @@
-// src/pages/Home/Home.jsx
 import { Button, Card, Row, Col, Typography, Space, Divider, Tag } from 'antd';
 import {
   CheckCircleOutlined,
@@ -63,7 +62,7 @@ const Home = () => {
           <Space size="large" className="hero-actions">
             <Link to="/register">
               <Button type="primary" size="large" icon={<PlayCircleOutlined />}>
-                Начать бесплатно
+                Начать
               </Button>
             </Link>
             <Link to="/login">
@@ -76,8 +75,8 @@ const Home = () => {
           <div className="tech-stack">
             <Text strong>Технологии: </Text>
             <Space size="small" wrap>
-              {technologies.map((tech, index) => (
-                <Tag key={index} color={tech.color}>
+              {technologies.map((tech) => (
+                <Tag key={tech.id} color={tech.color}>
                   {tech.name}
                 </Tag>
               ))}
@@ -91,8 +90,8 @@ const Home = () => {
               <Text strong>Мои задачи</Text>
             </div>
             <div className="preview-content">
-              {['Завершить проект', 'Подготовить отчет', 'Изучить новые технологии'].map((task, index) => (
-                <div key={index} className="preview-task">
+              {['Завершить проект', 'Подготовить отчет', 'Изучить новые технологии'].map((task) => (
+                <div key={task.id} className="preview-task">
                   <CheckCircleOutlined style={{ color: '#52c41a', marginRight: 8 }} />
                   <Text>{task}</Text>
                 </div>
@@ -110,8 +109,8 @@ const Home = () => {
         </Title>
 
         <Row gutter={[32, 32]}>
-          {features.map((feature, index) => (
-            <Col xs={24} md={12} lg={6} key={index}>
+          {features.map((feature) => (
+            <Col xs={24} md={12} lg={6} key={feature.id}>
               <Card
                 className="feature-card"
                 hoverable

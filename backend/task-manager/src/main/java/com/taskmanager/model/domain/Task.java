@@ -2,6 +2,8 @@ package com.taskmanager.model.domain;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.taskmanager.model.enums.TaskStatus;
 
 import jakarta.persistence.Entity;
@@ -27,7 +29,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Task {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,4 +46,7 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

@@ -24,13 +24,14 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class JwtTokenProvider {
-    
+
     @Value("${app.jwt.access-secret}")
     private String jwtAccessSecret;
 
     @Value("${app.jwt.refresh-secret}")
     private String jwtRefreshSecret;
 
+    // TODO: Вернуть с 30 секнунд на 15 минут после тестирования
     @Value("${app.jwt.access-expiration}")
     private Long jwtAccessExpiration;
 
@@ -38,6 +39,7 @@ public class JwtTokenProvider {
     private Long jwtRefreshExpiration;
 
     private final SecureRandom secureRandom = new SecureRandom();
+
     private SecretKey getAccessSigningKey() {
         return Keys.hmacShaKeyFor(jwtAccessSecret.getBytes());
     }
@@ -51,8 +53,8 @@ public class JwtTokenProvider {
         var expiryDate = new Date(now.getTime() + jwtAccessExpiration);
 
         List<String> roleNames = roles.stream()
-            .map(Enum::name)
-            .toList();
+                .map(Enum::name)
+                .toList();
 
         String token = Jwts.builder()
                 .setSubject(email)
@@ -64,14 +66,14 @@ public class JwtTokenProvider {
                 .setId(generateTokenId())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(getAccessSigningKey(),SignatureAlgorithm.HS256)
+                .signWith(getAccessSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
 
         log.info("(generateAccessToken) Access token generated successfully for: {}", email);
         return token;
     }
 
-    public String generateRefreshToken(String email){
+    public String generateRefreshToken(String email) {
         var now = new Date();
         var expiryDate = new Date(now.getTime() + jwtRefreshExpiration);
 
@@ -81,7 +83,7 @@ public class JwtTokenProvider {
                 .setId(generateTokenId())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(getRefreshSigningKey(),SignatureAlgorithm.HS256)
+                .signWith(getRefreshSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
 
         log.info("(generateRefreshToken) Refresh token generated successfully for: {}", email);
@@ -90,44 +92,44 @@ public class JwtTokenProvider {
 
     public Set<Role> getRolesFromAccessToken(String token) {
         var claims = Jwts.parserBuilder()
-            .setSigningKey(getAccessSigningKey())
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
-        
+                .setSigningKey(getAccessSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
         @SuppressWarnings("unchecked")
         List<String> roleNames = claims.get("roles", List.class);
-        
+
         if (roleNames == null) {
             return Set.of(Role.USER);
         }
-        
+
         return roleNames.stream()
-            .map(Role::valueOf)
-            .collect(Collectors.toSet());
+                .map(Role::valueOf)
+                .collect(Collectors.toSet());
     }
 
-    public String getEmailFromAccessToken(String token){
+    public String getEmailFromAccessToken(String token) {
         var claims = Jwts.parserBuilder()
-            .setSigningKey(getAccessSigningKey())
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
+                .setSigningKey(getAccessSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
 
         String email = claims.getSubject();
         log.debug("Extracted email from token claims: {}", email);
         return email;
     }
 
-    public String getEmailFromRefreshToken(String token){
-        if(token == null || token.isEmpty()) {
+    public String getEmailFromRefreshToken(String token) {
+        if (token == null || token.isEmpty()) {
             throw new EmptyRequestException("Bad request (empty or null)");
         }
         var claims = Jwts.parserBuilder()
-            .setSigningKey(getRefreshSigningKey())
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
+                .setSigningKey(getRefreshSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
         return claims.getSubject();
     }
 
@@ -148,9 +150,9 @@ public class JwtTokenProvider {
     private boolean validateToken(String token, SecretKey signingKey) {
         try {
             Jwts.parserBuilder()
-                .setSigningKey(signingKey)
-                .build()
-                .parseClaimsJws(token);
+                    .setSigningKey(signingKey)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;

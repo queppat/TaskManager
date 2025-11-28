@@ -1,11 +1,14 @@
 package com.taskmanager.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.taskmanager.model.dto.entity.TaskDTO;
 import com.taskmanager.model.dto.entity.UserDetailsImpl;
 import com.taskmanager.model.dto.request.CreateTaskRequest;
 import com.taskmanager.model.dto.request.UpdateTaskRequest;
+import com.taskmanager.model.dto.response.PagedResponse;
 import com.taskmanager.service.TaskService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,18 +34,20 @@ public class TaskController {
     private final TaskService taskSerice;
 
     @GetMapping
-    public ResponseEntity<Object> getUserTasks(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<PagedResponse<TaskDTO>> getUserTasks(@AuthenticationPrincipal UserDetailsImpl userDetails,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
 
         String email = userDetails.getUsername();
 
-        var serviceResponse = taskSerice.getUserTasks(email);
+        var serviceResponse = taskSerice.getUserTasks(email, page, size);
 
-        log.info("(200) (GET /api/task) Get tasks successfully for user: " + email);
+        log.info("(200) (GET /api/tasks) Get tasks successfully for user: " + email);
         return ResponseEntity.ok().body(serviceResponse);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
+    public ResponseEntity<TaskDTO> createTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
             @RequestBody CreateTaskRequest request) {
 
         String email = userDetails.getUsername();
@@ -50,20 +55,21 @@ public class TaskController {
 
         var serviceResponse = taskSerice.createTask(userDetails.getUsername(), request);
 
-        log.info("(200) (POST /api/task) create task successfully for user: " + email);
+        log.info("(200) (POST /api/tasks) Create task successfully for user: " + email);
         return ResponseEntity.ok().body(serviceResponse);
     }
 
     @PatchMapping("/{taskId}")
-    public ResponseEntity<Object> updateTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
+    public ResponseEntity<TaskDTO> updateTask(@AuthenticationPrincipal UserDetailsImpl userDetails,
             @PathVariable Long taskId,
-            UpdateTaskRequest request) {
+            @RequestBody UpdateTaskRequest request) {
 
         String email = userDetails.getUsername();
 
         var serviceResponse = taskSerice.updateTask(userDetails.getUsername(), request, taskId);
 
-        log.info("(200) (PATCH /api/task/{}) Get tasks successfully for user: {]", taskId, email);
+        log.info("(200) (PATCH /api/tasks/{}) Update task successfully for user: {}", taskId, email);
+
         return ResponseEntity.ok().body(serviceResponse);
     }
 
@@ -75,7 +81,7 @@ public class TaskController {
 
         taskSerice.deleteTask(userDetails.getUsername(), taskId);
 
-        log.info("(200) (DELETE /api/task/{}) Get tasks successfully for user: {}", taskId, email);
+        log.info("(200) (DELETE /api/tasks/{}) Delete task successfully for user: {}", taskId, email);
         return ResponseEntity.ok().body(Map.of("message", "Successfully delete"));
     }
 

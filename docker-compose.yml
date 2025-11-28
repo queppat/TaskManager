@@ -10,7 +10,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "${DATABASE_PORT}:5432"
-
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   backend:
     build:
       context: ./backend/task-manager
@@ -41,3 +42,6 @@ services:
       - "${FRONTEND_PORT}:5173"
     depends_on:
       - backend
+
+volumes:
+  postgres_data:
