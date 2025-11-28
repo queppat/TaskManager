@@ -9,8 +9,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const logout = useCallback(async () => {
-    await authService.logout();
-    setUser(null);
+    try {
+      await authService.logout();
+    } catch (error) {
+      console.log('Logout error:', error);
+    } finally {
+      setUser(null);
+      authService.clearTokens();
+    }
   }, []);
 
   const refresh = useCallback(async () => {
@@ -23,34 +29,45 @@ export const AuthProvider = ({ children }) => {
       }
       return false;
     } catch (error) {
-      console.log(error);
-      logout();
+      console.log('Refresh token failed:', error);
+      await logout();
       return false;
     }
   }, [logout]);
 
-  const handleExpiredToken = useCallback(async () => {
-    const refreshSuccess = await refresh();
-    if (!refreshSuccess) {
-      logout();
-    }
-  }, [refresh, logout]);
-
   const initializeAuthState = useCallback(async () => {
-    const validation = authService.validateToken();
+    try {
+      const token = authService.getToken();
 
-    switch (validation.reason) {
-      case 'VALID':
-        setUser(validation.user);
-        break;
-      case 'EXPIRED':
-        await handleExpiredToken();
-        break;
-      default:
+      if (!token) {
         setUser(null);
-        break;
+        return;
+      }
+
+      const validation = authService.validateToken(token);
+
+      switch (validation.reason) {
+        case 'VALID':
+          setUser(validation.user);
+          break;
+        case 'EXPIRED': {
+          const refreshSuccess = await refresh();
+          if (!refreshSuccess) {
+            setUser(null);
+          }
+          break;
+        }
+        case 'NO_TOKEN':
+        case 'INVALID_TOKEN':
+        default:
+          setUser(null);
+          break;
+      }
+    } catch (error) {
+      console.log('Auth initialization error:', error);
+      setUser(null);
     }
-  }, [handleExpiredToken]);
+  }, [refresh]);
 
   useEffect(() => {
     const initialize = async () => {
@@ -84,7 +101,7 @@ export const AuthProvider = ({ children }) => {
     logout,
     refresh,
     loading,
-    isAuthenticated: authService.isAuthenticated()
+    isAuthenticated: !!user
   }), [user, login, register, logout, refresh, loading]);
 
   return (

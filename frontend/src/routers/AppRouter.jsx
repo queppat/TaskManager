@@ -18,7 +18,7 @@ const AppRouter = () => {
         alignItems: 'center',
         height: '100vh'
       }}>
-        Loading...
+        Checking authentication...
       </div>
     );
   }

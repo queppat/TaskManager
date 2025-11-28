@@ -31,7 +31,6 @@ public class JwtTokenProvider {
     @Value("${app.jwt.refresh-secret}")
     private String jwtRefreshSecret;
 
-    // TODO: Вернуть с 30 секнунд на 15 минут после тестирования
     @Value("${app.jwt.access-expiration}")
     private Long jwtAccessExpiration;
 

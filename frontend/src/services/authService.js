@@ -17,13 +17,19 @@ export const authService = {
     return response.data;
   },
 
-
   async logout() {
-    await api.post('/auth/logout', null, {
-      timeout: 5000
-    });
-    this.clearTokens();
-    globalThis.location.href = '/login';
+    try {
+      await api.post('/auth/logout', null, {
+        headers: {
+          Authorization: undefined
+        },
+        timeout: 5000
+      });
+    } catch (error) {
+      console.log('Logout request failed:', error);
+    } finally {
+      this.clearTokens();
+    }
   },
 
   async refreshTokens() {
@@ -53,20 +59,32 @@ export const authService = {
     return localStorage.getItem('accessToken');
   },
 
+  clearTokens() {
+    localStorage.removeItem('accessToken');
+  },
+
   isAuthenticated() {
-    return !!this.getToken();
+    const token = this.getToken();
+    if (!token) return false;
+
+    const validation = this.validateToken(token);
+    return validation.isValid;
   },
 
   validateToken(token = this.getToken()) {
     if (!token) return { isValid: false, reason: 'NO_TOKEN' };
 
-    const user = this.getUserFromToken(token);
-    if (!user?.exp) return { isValid: false, reason: 'INVALID_TOKEN' };
+    try {
+      const user = this.getUserFromToken(token);
+      if (!user?.exp) return { isValid: false, reason: 'INVALID_TOKEN' };
 
-    const isExpired = Date.now() >= user.exp * 1000;
-    if (isExpired) return { isValid: false, reason: 'EXPIRED' };
+      const isExpired = Date.now() >= user.exp * 1000;
+      if (isExpired) return { isValid: false, reason: 'EXPIRED' };
 
-    return { isValid: true, user, reason: 'VALID' };
+      return { isValid: true, user, reason: 'VALID' };
+    } catch (error) {
+      return { isValid: false, reason: 'INVALID_TOKEN' };
+    }
   },
 
   getUserFromToken(token = this.getToken()) {
@@ -82,7 +100,7 @@ export const authService = {
   },
 
   isTokenExpired(token = this.getToken()) {
-    const user = this.getUserFromToken(token);
-    return user?.exp ? Date.now() >= user.exp * 1000 : true;
+    const validation = this.validateToken(token);
+    return !validation.isValid;
   }
 };
