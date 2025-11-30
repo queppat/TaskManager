@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 export const useTaskFilters = (initialFilters = {}, initialSort = 'createdAt,desc') => {
   const [filters, setFilters] = useState({
@@ -9,9 +9,17 @@ export const useTaskFilters = (initialFilters = {}, initialSort = 'createdAt,des
   });
   
   const [sort, setSort] = useState(initialSort);
+  
+  const searchTimeoutRef = useRef(null);
 
   const handleSearch = useCallback((value) => {
-    setFilters(prev => ({ ...prev, title: value }));
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+    
+    searchTimeoutRef.current = setTimeout(() => {
+      setFilters(prev => ({ ...prev, title: value }));
+    }, 500);
   }, []);
 
   const handleStatusFilter = useCallback((value) => {
@@ -27,6 +35,10 @@ export const useTaskFilters = (initialFilters = {}, initialSort = 'createdAt,des
   }, []);
 
   const handleResetFilters = useCallback(() => {
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+    
     setFilters({
       title: '',
       status: '',

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Input, Select, DatePicker, Button, Space } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
+import { useState, useEffect } from 'react'; // Добавляем импорты
 
 const { Search } = Input;
 const { Option } = Select;
@@ -15,17 +16,33 @@ const TaskFilters = ({
   onResetFilters,
   loading
 }) => {
+  const [searchValue, setSearchValue] = useState(filters.title);
+
+  useEffect(() => {
+    setSearchValue(filters.title);
+  }, [filters.title]);
+
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+    onSearch(value);
+  };
+
+  const handleReset = () => {
+    setSearchValue('');
+    onResetFilters();
+  };
+
   return (
     <div className="filters-section">
       <Space size="middle" wrap>
         <Search
           placeholder="Поиск по названию..."
           allowClear
-          value={filters.title}
+          value={searchValue}
           style={{ width: 200 }}
           onSearch={onSearch}
           onChange={(e) => {
-            onSearch(e.target.value);
+            handleSearchChange(e.target.value);
           }}
           loading={loading}
           enterButton
@@ -67,7 +84,7 @@ const TaskFilters = ({
         </Select>
 
         <Button
-          onClick={onResetFilters}
+          onClick={handleReset}
           icon={<ReloadOutlined />}
           disabled={loading}
         >
