@@ -2,6 +2,9 @@ package com.taskmanager.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.taskmanager.exception.TaskNotFoundException;
@@ -9,11 +12,13 @@ import com.taskmanager.exception.UserNotFoundException;
 import com.taskmanager.model.domain.Task;
 import com.taskmanager.model.domain.User;
 import com.taskmanager.model.dto.entity.TaskDTO;
+import com.taskmanager.model.dto.entity.TaskFilter;
 import com.taskmanager.model.dto.request.CreateTaskRequest;
 import com.taskmanager.model.dto.request.UpdateTaskRequest;
 import com.taskmanager.model.dto.response.PagedResponse;
 import com.taskmanager.repository.TaskRepository;
 import com.taskmanager.repository.UserRepository;
+import com.taskmanager.utils.TaskFilterUtil;
 import com.taskmanager.utils.TaskMapper;
 
 import jakarta.transaction.Transactional;
@@ -28,6 +33,7 @@ public class TaskService {
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
+    private final TaskFilterUtil taskFilterUtil;
 
     @Transactional
     public TaskDTO createTask(String email, CreateTaskRequest request) {
@@ -50,15 +56,19 @@ public class TaskService {
     }
 
     @Transactional
-    public PagedResponse<TaskDTO> getUserTasks(String email, int page, int size) {
+    public PagedResponse<TaskDTO> getUserTasks(String email, int page, int size, TaskFilter filters, String sort) {
         if (Boolean.FALSE.equals(userRepository.existsByEmail(email))) {
             throw new UserNotFoundException("User not found: " + email);
         }
 
         int pageSize = Math.min(size, 10);
 
-        Page<Task> taskPage = taskRepository.findAllUserTasksByEmailWithPagination(email,
-                PageRequest.of(page, pageSize));
+        Sort sortOptions = taskFilterUtil.parseSortParameter(sort);
+        Pageable pageable = PageRequest.of(page, pageSize, sortOptions);
+
+        Specification<Task> spec = taskFilterUtil.buildSpecification(email, filters);
+
+        Page<Task> taskPage = taskRepository.findAll(spec, pageable);
 
         PagedResponse<TaskDTO> pagedResponse = new PagedResponse<>(taskPage.map(taskMapper::entityToDTO));
 

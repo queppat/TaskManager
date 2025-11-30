@@ -7,7 +7,8 @@ const TaskTable = ({
     tasks,
     loading,
     onEdit,
-    onDelete
+    onDelete,
+    onView
 }) => {
     const statusColors = {
         'TODO': 'orange',
@@ -22,6 +23,15 @@ const TaskTable = ({
             key: 'title',
             align: 'center',
             width: 100,
+            render: (title, record) => (
+                <Button
+                    type="link"
+                    onClick={() => onView(record)}
+                    style={{ padding: 0, height: 'auto', fontWeight: 'normal' }}
+                >
+                    {title}
+                </Button>
+            ),
         },
         {
             title: 'Описание',
@@ -114,4 +124,5 @@ TaskTable.propTypes = {
     loading: PropTypes.bool,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onView: PropTypes.func.isRequired, 
 };

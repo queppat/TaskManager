@@ -5,17 +5,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.taskmanager.model.dto.entity.TaskDTO;
+import com.taskmanager.model.dto.entity.TaskFilter;
 import com.taskmanager.model.dto.entity.UserDetailsImpl;
 import com.taskmanager.model.dto.request.CreateTaskRequest;
 import com.taskmanager.model.dto.request.UpdateTaskRequest;
 import com.taskmanager.model.dto.response.PagedResponse;
+import com.taskmanager.model.enums.TaskStatus;
 import com.taskmanager.service.TaskService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
 import java.util.Map;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,11 +40,21 @@ public class TaskController {
     @GetMapping
     public ResponseEntity<PagedResponse<TaskDTO>> getUserTasks(@AuthenticationPrincipal UserDetailsImpl userDetails,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) TaskStatus status,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate deadline,
+            @RequestParam(defaultValue = "createdAt,desc") String sort) {
 
         String email = userDetails.getUsername();
 
-        var serviceResponse = taskSerice.getUserTasks(email, page, size);
+        TaskFilter filters = TaskFilter.builder()
+            .title(title)
+            .status(status)
+            .deadline(deadline)
+            .build();
+
+        var serviceResponse = taskSerice.getUserTasks(email, page, size, filters, sort);
 
         log.info("(200) (GET /api/tasks) Get tasks successfully for user: " + email);
         return ResponseEntity.ok().body(serviceResponse);

@@ -135,7 +135,7 @@ const Home = () => {
           <div className="cta-content">
             <Title level={2}>Готовы начать?</Title>
             <Paragraph>
-              Присоединяйтесь к триллионам пользователей, которые уже повысили
+              Присоединяйтесь пользователям, которые уже повысили
               свою продуктивность с помощью Task Manager
             </Paragraph>
             <Link to="/register">

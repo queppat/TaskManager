@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useContext, useRef, useCallback } from 'react';
 import { Layout, Card, Button, message, Form } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -12,6 +12,8 @@ import TaskPagination from '../../components/Task/TaskPagination';
 import dayjs from 'dayjs'
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useTaskFilters } from '../../hooks/useTasksFilter';
+import TaskFilters from '../../components/Task/FilterSelection';
 
 const { Content } = Layout;
 
@@ -23,6 +25,7 @@ const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [viewMode, setViewMode] = useState(false);
     const [editingTask, setEditingTask] = useState(null);
     const [form] = Form.useForm();
 
@@ -34,10 +37,30 @@ const Dashboard = () => {
     const [pendingTasks, setPendingTasks] = useState(0);
     const [inProgressTasks, setInProgressTasks] = useState(0);
 
+    const { filters, sort, handlers } = useTaskFilters();
+
+    const filtersRef = useRef(filters);
+    const sortRef = useRef(sort);
+
+    useEffect(() => {
+        filtersRef.current = filters;
+        sortRef.current = sort;
+    }, [filters, sort]);
+
+    const updateTaskStats = useCallback((tasksList) => {
+        const completed = tasksList.filter(task => task.status === 'DONE').length;
+        const pending = tasksList.filter(task => task.status === 'TODO').length;
+        const inProgress = tasksList.filter(task => task.status === 'IN_PROGRESS').length;
+
+        setCompletedTasks(completed);
+        setPendingTasks(pending);
+        setInProgressTasks(inProgress);
+    }, []);
+
     const loadTasks = useCallback(async (page = 0, size = 10) => {
         setLoading(true);
         try {
-            const tasksData = await taskService.getAllTasks(page, size);
+            const tasksData = await taskService.getAllTasks(page, size, filters, sort);
 
             setTasks(tasksData.content);
             setTotalTasks(tasksData.totalElements);
@@ -50,27 +73,17 @@ const Dashboard = () => {
         } finally {
             setLoading(false);
         }
-    }, [messageApi]);
+    }, [messageApi, filters, sort, updateTaskStats]);
 
-    const updateTaskStats = (tasksList) => {
-        const completed = tasksList.filter(task => task.status === 'DONE').length;
-        const pending = tasksList.filter(task => task.status === 'TODO').length;
-        const inProgress = tasksList.filter(task => task.status === 'IN_PROGRESS').length;
-
-        setCompletedTasks(completed);
-        setPendingTasks(pending);
-        setInProgressTasks(inProgress);
-    };
-
-    useEffect(() => {
-        loadTasks(0, 10);
-    }, [loadTasks]);
-
-    const handlePageChange = (page, size) => {
+    const handlePageChange = useCallback((page, size) => {
         setCurrentPage(page);
         setPageSize(size);
         loadTasks(page, size);
-    };
+    }, [loadTasks]);
+
+    useEffect(() => {
+        loadTasks(0, pageSize);
+    }, [filters, sort, pageSize, loadTasks]);
 
     const handleSubmit = async (values) => {
         try {
@@ -116,18 +129,9 @@ const Dashboard = () => {
         }
     };
 
-    const handleLogout = async () => {
-        try {
-            await logout();
-            navigate('/login');
-        } catch (error) {
-            console.error('Logout error:', error);
-            navigate('/login');
-        }
-    };
-
     const handleEdit = (task) => {
         setEditingTask(task);
+        setViewMode(false);
 
         const formValues = {
             ...task,
@@ -138,9 +142,26 @@ const Dashboard = () => {
         setModalVisible(true);
     };
 
+    const handleView = (task) => {
+        setEditingTask(task);
+        setViewMode(true);
+        setModalVisible(true);
+    };
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch (error) {
+            console.error('Logout error:', error);
+            navigate('/login');
+        }
+    };
+
     const handleModalCancel = () => {
         setModalVisible(false);
         setEditingTask(null);
+        setViewMode(false);
         form.resetFields();
     };
 
@@ -176,10 +197,22 @@ const Dashboard = () => {
                             </Button>
                         }
                     >
+                        <TaskFilters
+                            filters={filters}
+                            sort={sort}
+                            onSearch={handlers.handleSearch}
+                            onStatusFilter={handlers.handleStatusFilter}
+                            onDueDateFilter={handlers.handleDueDateFilter}
+                            onSortChange={handlers.handleSortChange}
+                            onResetFilters={handlers.handleResetFilters}
+                            loading={loading}
+                        />
+
                         <TaskTable
                             tasks={tasks}
                             loading={loading}
                             onEdit={handleEdit}
+                            onView={handleView}
                             onDelete={handleDelete}
                         />
 
@@ -195,6 +228,7 @@ const Dashboard = () => {
                         visible={modalVisible}
                         editingTask={editingTask}
                         onCancel={handleModalCancel}
+                        viewMode={viewMode}
                         onFinish={handleSubmit}
                         form={form}
                     />

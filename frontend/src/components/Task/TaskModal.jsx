@@ -1,4 +1,4 @@
-import { Modal, Form, Input, Select, DatePicker, Button, Space } from 'antd';
+import { Modal, Form, Input, Select, DatePicker, Button, Space, Descriptions, Tag } from 'antd';
 import { PropTypes } from 'prop-types'
 import dayjs from 'dayjs';
 
@@ -8,10 +8,68 @@ const { TextArea } = Input;
 const TaskModal = ({
     visible,
     editingTask,
+    viewMode,
     onCancel,
     onFinish,
     form
 }) => {
+    const isViewMode = viewMode && editingTask;
+
+    const getStatusColor = (status) => {
+        const colors = {
+            'TODO': 'orange',
+            'IN_PROGRESS': 'blue',
+            'DONE': 'green'
+        };
+        return colors[status] || 'default';
+    };
+
+    const getStatusLabel = (status) => {
+        const labels = {
+            'TODO': 'Сделать',
+            'IN_PROGRESS': 'В процессе',
+            'DONE': 'Выполнено'
+        };
+        return labels[status] || status;
+    };
+
+    if (isViewMode) {
+        return (
+            <Modal
+                title="Просмотр задачи"
+                open={visible}
+                onCancel={onCancel}
+                footer={[
+                    <Button key="close" onClick={onCancel}>
+                        Закрыть
+                    </Button>
+                ]}
+                width={600}
+            >
+                <Descriptions column={1} bordered>
+                    <Descriptions.Item label="Название">
+                        {editingTask.title}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Описание">
+                        {editingTask.description || '—'}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Статус">
+                        <Tag color={getStatusColor(editingTask.status)}>
+                            {getStatusLabel(editingTask.status)}
+                        </Tag>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Срок выполнения">
+                        {editingTask.deadline ? dayjs(editingTask.deadline).format('DD.MM.YYYY HH:mm') : '—'}
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Дата создания">
+                        {editingTask.createdAt ? dayjs(editingTask.createdAt).format('DD.MM.YYYY HH:mm') : '—'}
+                    </Descriptions.Item>
+                </Descriptions>
+            </Modal>
+        );
+    }
+
+
     return (
         <Modal
             title={editingTask ? 'Редактировать задачу' : 'Новая задача'}
@@ -91,7 +149,6 @@ const TaskModal = ({
                             format: 'HH:mm',
                         }}
                         disabledDate={(current) => {
-
                             return current && current < dayjs().startOf('day');
                         }}
                     />
@@ -121,13 +178,16 @@ TaskModal.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         status: PropTypes.oneOf(['TODO', 'IN_PROGRESS', 'DONE']),
-        deadline: PropTypes.string
+        deadline: PropTypes.string,
+        createdAt: PropTypes.string
     }),
+    viewMode: PropTypes.bool,
     onCancel: PropTypes.func.isRequired,
     onFinish: PropTypes.func.isRequired,
     form: PropTypes.object.isRequired
 };
 
 TaskModal.defaultProps = {
-    editingTask: null
+    editingTask: null,
+    viewMode: false
 };

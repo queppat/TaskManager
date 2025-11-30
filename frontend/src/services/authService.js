@@ -43,7 +43,7 @@ export const authService = {
 
       if (response.data.accessToken) {
         this.setToken(response.data.accessToken);
-        return response.data.accessToken;
+        return response.data;
       }
       throw new Error('No access token in refresh response');
     } catch (error) {
