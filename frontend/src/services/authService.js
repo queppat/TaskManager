@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import api from './api';
 
 export const authService = {
@@ -83,6 +84,7 @@ export const authService = {
 
       return { isValid: true, user, reason: 'VALID' };
     } catch (error) {
+      message.error(error.response?.data?.message || 'Неверный токен');
       return { isValid: false, reason: 'INVALID_TOKEN' };
     }
   },

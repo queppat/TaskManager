@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { Layout, Card, Button, message, Form } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import { authService } from '../../services/authService';
 import { taskService } from '../../services/taskService';
 import './Dashboard.css';
 import StatsPanel from '../../components/Task/StatisticPanel';
@@ -11,10 +10,15 @@ import TaskTable from '../../components/Task/TaskTable';
 import TaskModal from '../../components/Task/TaskModal';
 import TaskPagination from '../../components/Task/TaskPagination';
 import dayjs from 'dayjs'
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const { Content } = Layout;
 
 const Dashboard = () => {
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [messageApi, contextHolder] = message.useMessage();
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -112,9 +116,14 @@ const Dashboard = () => {
         }
     };
 
-    const handleLogout = () => {
-        authService.logout();
-        globalThis.location.href = '/login';
+    const handleLogout = async () => {
+        try {
+            await logout();
+            navigate('/login');
+        } catch (error) {
+            console.error('Logout error:', error);
+            navigate('/login');
+        }
     };
 
     const handleEdit = (task) => {
