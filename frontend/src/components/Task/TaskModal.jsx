@@ -14,6 +14,7 @@ const TaskModal = ({
     form
 }) => {
     const isViewMode = viewMode && editingTask;
+    const isEditing = !!editingTask;
 
     const getStatusColor = (status) => {
         const colors = {
@@ -110,7 +111,7 @@ const TaskModal = ({
                     <Select placeholder="Выберите статус">
                         <Option value="TODO">Сделать</Option>
                         <Option value="IN_PROGRESS">В процессе</Option>
-                        <Option value="DONE">Выполнено</Option>
+                        {isEditing && <Option value="DONE">Выполнено</Option>}
                     </Select>
                 </Form.Item>
 

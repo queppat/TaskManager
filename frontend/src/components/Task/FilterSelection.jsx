@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Input, Select, DatePicker, Button, Space } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
+import { useState, useEffect } from 'react'; // Добавляем импорты
 
 const { Search } = Input;
 const { Option } = Select;
@@ -15,26 +16,42 @@ const TaskFilters = ({
   onResetFilters,
   loading
 }) => {
+  const [searchValue, setSearchValue] = useState(filters.title);
+
+  useEffect(() => {
+    setSearchValue(filters.title);
+  }, [filters.title]);
+
+  const handleSearchChange = (value) => {
+    setSearchValue(value);
+    onSearch(value);
+  };
+
+  const handleReset = () => {
+    setSearchValue('');
+    onResetFilters();
+  };
+
   return (
     <div className="filters-section">
       <Space size="middle" wrap>
         <Search
           placeholder="Поиск по названию..."
           allowClear
-          value={filters.title}
+          value={searchValue}
           style={{ width: 200 }}
           onSearch={onSearch}
           onChange={(e) => {
-            onSearch(e.target.value);
+            handleSearchChange(e.target.value);
           }}
           loading={loading}
           enterButton
         />
-        
+
         <Select
           placeholder="Статус"
           allowClear
-          value={filters.status}
+          value={filters.status || undefined}
           style={{ width: 150 }}
           onChange={onStatusFilter}
           disabled={loading}
@@ -43,7 +60,7 @@ const TaskFilters = ({
           <Option value="IN_PROGRESS">В работе</Option>
           <Option value="DONE">Выполнено</Option>
         </Select>
-        
+
         <DatePicker
           placeholder="Срок выполнения"
           value={filters.deadline}
@@ -52,7 +69,7 @@ const TaskFilters = ({
           allowClear
           disabled={loading}
         />
-        
+
         <Select
           placeholder="Сортировка"
           value={sort}
@@ -65,9 +82,9 @@ const TaskFilters = ({
           <Option value="deadline,asc">По сроку (сначала ближайшие)</Option>
           <Option value="deadline,desc">По сроку (сначала дальние)</Option>
         </Select>
-        
-        <Button 
-          onClick={onResetFilters}
+
+        <Button
+          onClick={handleReset}
           icon={<ReloadOutlined />}
           disabled={loading}
         >
