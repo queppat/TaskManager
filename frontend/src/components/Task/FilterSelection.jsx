@@ -30,11 +30,11 @@ const TaskFilters = ({
           loading={loading}
           enterButton
         />
-        
+
         <Select
           placeholder="Статус"
           allowClear
-          value={filters.status}
+          value={filters.status || undefined}
           style={{ width: 150 }}
           onChange={onStatusFilter}
           disabled={loading}
@@ -43,7 +43,7 @@ const TaskFilters = ({
           <Option value="IN_PROGRESS">В работе</Option>
           <Option value="DONE">Выполнено</Option>
         </Select>
-        
+
         <DatePicker
           placeholder="Срок выполнения"
           value={filters.deadline}
@@ -52,7 +52,7 @@ const TaskFilters = ({
           allowClear
           disabled={loading}
         />
-        
+
         <Select
           placeholder="Сортировка"
           value={sort}
@@ -65,8 +65,8 @@ const TaskFilters = ({
           <Option value="deadline,asc">По сроку (сначала ближайшие)</Option>
           <Option value="deadline,desc">По сроку (сначала дальние)</Option>
         </Select>
-        
-        <Button 
+
+        <Button
           onClick={onResetFilters}
           icon={<ReloadOutlined />}
           disabled={loading}

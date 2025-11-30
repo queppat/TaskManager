@@ -89,7 +89,7 @@ const Dashboard = () => {
         try {
             const dataToSend = {
                 ...values,
-                deadline: values.deadline ? values.deadline.toISOString() : null
+                deadline: values.deadline ? values.deadline.format('YYYY-MM-DDTHH:mm:ss') : null
             };
 
             if (editingTask) {

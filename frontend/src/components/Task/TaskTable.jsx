@@ -1,5 +1,5 @@
 import { Table, Tag, Button, Space, Popconfirm } from 'antd';
-import { EditOutlined, DeleteOutlined, CheckCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, CheckCircleOutlined, ClockCircleOutlined, EyeOutlined } from '@ant-design/icons';
 import { PropTypes } from 'prop-types'
 import dayjs from 'dayjs'
 
@@ -16,18 +16,31 @@ const TaskTable = ({
         'DONE': 'green'
     };
 
+    const statusLabels = {
+        'TODO': 'Сделать',
+        'IN_PROGRESS': 'В процессе',
+        'DONE': 'Выполнено'
+    };
+
     const columns = [
         {
             title: 'Название',
             dataIndex: 'title',
             key: 'title',
-            align: 'center',
-            width: 100,
+            width: 200,
             render: (title, record) => (
                 <Button
                     type="link"
                     onClick={() => onView(record)}
-                    style={{ padding: 0, height: 'auto', fontWeight: 'normal' }}
+                    style={{
+                        padding: 0,
+                        height: 'auto',
+                        fontWeight: 'normal',
+                        textAlign: 'left',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word',
+                        wordBreak: 'break-word'
+                    }}
                 >
                     {title}
                 </Button>
@@ -37,20 +50,31 @@ const TaskTable = ({
             title: 'Описание',
             dataIndex: 'description',
             key: 'description',
-            align: 'center',
-            ellipsis: true,
+            width: 250,
+            render: (description) => (
+                <div
+                    style={{
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word',
+                        wordBreak: 'break-word',
+                        lineHeight: '1.4'
+                    }}
+                >
+                    {description || '-'}
+                </div>
+            ),
         },
         {
             title: 'Статус',
             dataIndex: 'status',
             key: 'status',
-            align: 'center',
+            width: 120,
             render: (status) => (
                 <Tag color={statusColors[status]}>
                     {status === 'TODO' && <ClockCircleOutlined />}
                     {status === 'IN_PROGRESS' && <ClockCircleOutlined />}
                     {status === 'DONE' && <CheckCircleOutlined />}
-                    {' '}{status}
+                    {' '}{statusLabels[status]}
                 </Tag>
             ),
         },
@@ -58,29 +82,34 @@ const TaskTable = ({
             title: 'Дата создания',
             dataIndex: 'createdAt',
             key: 'createdAt',
-            align: 'center',
+            width: 150,
             render: (date) => date ? dayjs(date).format('DD.MM.YYYY HH:mm') : '-'
         },
         {
             title: 'Срок',
             dataIndex: 'deadline',
             key: 'deadline',
-            align: 'center',
+            width: 150,
             render: (date) => date ? dayjs(date).format('DD.MM.YYYY HH:mm') : '-'
         },
         {
             title: 'Действия',
             key: 'actions',
-            align: 'center',
+            width: 120,
             render: (_, record) => (
-                <Space>
+                <Space size="small">
                     <Button
-                        type="link"
+                        type="text"
+                        icon={<EyeOutlined />}
+                        onClick={() => onView(record)}
+                        size="small"
+                    />
+                    <Button
+                        type="text"
                         icon={<EditOutlined />}
                         onClick={() => onEdit(record)}
-                    >
-                        Редактировать
-                    </Button>
+                        size="small"
+                    />
                     <Popconfirm
                         title="Удалить задачу?"
                         onConfirm={() => onDelete(record.id)}
@@ -88,12 +117,11 @@ const TaskTable = ({
                         cancelText="Нет"
                     >
                         <Button
-                            type="link"
+                            type="text"
                             danger
                             icon={<DeleteOutlined />}
-                        >
-                            Удалить
-                        </Button>
+                            size="small"
+                        />
                     </Popconfirm>
                 </Space>
             ),
@@ -107,6 +135,7 @@ const TaskTable = ({
             rowKey="id"
             loading={loading}
             pagination={false}
+            scroll={{ x: 800 }}
         />
     );
 };
@@ -124,5 +153,5 @@ TaskTable.propTypes = {
     loading: PropTypes.bool,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onView: PropTypes.func.isRequired, 
+    onView: PropTypes.func.isRequired,
 };
