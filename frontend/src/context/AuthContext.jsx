@@ -1,64 +1,108 @@
-import { createContext, useState, useMemo, useEffect } from 'react';
+import { createContext, useState, useMemo, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { authService } from '../services/authService';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const isAuthenticated = () => {
-    return !!localStorage.getItem('accessToken');
-  };
-
-
-  const getuserFromToken = () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) return null;
-    
+  const logout = useCallback(async () => {
     try {
-      const payload = token.split('.')[1];
-      const decoded = JSON.parse(atob(payload));
-      return decoded;
-    } catch {
-      return null;
+      await authService.logout();
+    } catch (error) {
+      console.log('Logout error:', error);
+    } finally {
+      setUser(null);
+      authService.clearTokens();
     }
-  };
-
-  useEffect(() => {
-    const user = getuserFromToken();
-    setUser(user);
-    setLoading(false);
   }, []);
 
-  const login = async (credentials) => {
-      const data = await authService.login(credentials);
-      setUser(data.user);
-      return data;
-  };
-
-  const register = async (userData) => {
-      const data = await authService.register(userData);
+  const refresh = useCallback(async () => {
+    try {
+      const data = await authService.refreshTokens();
       if (data.accessToken) {
-        setUser({ username: userData.username });
+        const user = authService.getUserFromToken();
+        setUser(user);
+        return true;
       }
-      return data;
-  };
+      return false;
+    } catch (error) {
+      console.log('Refresh token failed:', error);
+      await logout();
+      return false;
+    }
+  }, [logout]);
 
-  const logout = () => {
-    authService.logout();
-    setUser(null);
-  };
+  const initializeAuthState = useCallback(async () => {
+    try {
+      const token = authService.getToken();
+
+      if (!token) {
+        setUser(null);
+        return;
+      }
+
+      const validation = authService.validateToken(token);
+
+      switch (validation.reason) {
+        case 'VALID':
+          setUser(validation.user);
+          break;
+        case 'EXPIRED': {
+          const refreshSuccess = await refresh();
+          if (!refreshSuccess) {
+            setUser(null);
+          }
+          break;
+        }
+        case 'NO_TOKEN':
+        case 'INVALID_TOKEN':
+        default:
+          setUser(null);
+          break;
+      }
+    } catch (error) {
+      console.log('Auth initialization error:', error);
+      setUser(null);
+    }
+  }, [refresh]);
+
+  useEffect(() => {
+    const initialize = async () => {
+      await initializeAuthState();
+      setLoading(false);
+    };
+
+    initialize();
+  }, [initializeAuthState]);
+
+  const login = useCallback(async (credentials) => {
+    const data = await authService.login(credentials);
+    const user = authService.getUserFromToken();
+    setUser(user);
+    return data;
+  }, []);
+
+  const register = useCallback(async (userData) => {
+    const data = await authService.register(userData);
+    if (data.accessToken) {
+      const user = authService.getUserFromToken();
+      setUser(user);
+    }
+    return data;
+  }, []);
 
   const value = useMemo(() => ({
     user,
     login,
     register,
     logout,
+    refresh,
     loading,
-    isAuthenticated
-  }), [user, loading]);
+    isAuthenticated: !!user
+  }), [user, login, register, logout, refresh, loading]);
 
   return (
     <AuthContext.Provider value={value}>

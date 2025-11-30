@@ -1,0 +1,93 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.login-card .ant-card-body {
+    padding: 40px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-icon {
+    font-size: 48px;
+    color: #1890ff;
+    margin-bottom: 16px;
+}
+
+.login-title {
+    margin: 0;
+    color: #262626;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.login-subtitle {
+    color: #8c8c8c;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.forgot-password {
+    color: #1890ff;
+}
+
+.forgot-password:hover {
+    opacity: 0.8;
+}
+
+.login-button {
+    height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-footer {
+    text-align: center;
+    color: #8c8c8c;
+}
+
+.register-link {
+    color: #1890ff;
+    font-weight: 500;
+}
+
+.register-link:hover {
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-card .ant-card-body {
+        padding: 24px;
+    }
+
+    .login-icon {
+        font-size: 40px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+}

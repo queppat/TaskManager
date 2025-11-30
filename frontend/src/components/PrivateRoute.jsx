@@ -1,19 +1,28 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import PropTypes from 'prop-types';
+import { useAuth } from '../hooks/useAuth';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }}>
+        Loading...
+      </div>
+    );
   }
 
-  return isAuthenticated() ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
-
-export default PrivateRoute;
 
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired
 };
+
+export default PrivateRoute;

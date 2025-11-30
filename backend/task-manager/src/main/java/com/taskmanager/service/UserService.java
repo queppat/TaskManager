@@ -32,7 +32,7 @@ public class UserService {
 
     public TokenDTO registerUser(RegisterRequest registerRequest) {
 
-        if(registerRequest.getEmail() == null || registerRequest.getEmail().trim().isEmpty()){
+        if (registerRequest.getEmail() == null || registerRequest.getEmail().trim().isEmpty()) {
             throw new WrongParamException("Email cannot be empty");
         }
 
@@ -41,34 +41,33 @@ public class UserService {
         }
 
         User user = User.builder()
-            .email(registerRequest.getEmail().toLowerCase().trim())
-            .username(registerRequest.getUsername())
-            .password(passwordEncoder.encode(registerRequest.getPassword()))
-            .roles(Set.of(Role.USER))
-            .build();
+                .email(registerRequest.getEmail().toLowerCase().trim())
+                .username(registerRequest.getUsername())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .roles(Set.of(Role.USER))
+                .build();
 
         User savedUser = userRepository.save(user);
 
         String accessToken = jwtTokenProvider.generateAccessToken(
-            savedUser.getId(),
-            savedUser.getEmail(),
-            savedUser.getUsername(),
-            savedUser.getRoles(),
-            true
-        );
+                savedUser.getId(),
+                savedUser.getEmail(),
+                savedUser.getUsername(),
+                savedUser.getRoles(),
+                true);
 
         String refreshToken = jwtTokenProvider.generateRefreshToken(savedUser.getEmail());
 
         log.info("(registerUser) User registered successfully: {}", registerRequest.getEmail());
         return TokenDTO.builder()
-            .accessToken(accessToken)
-            .refreshToken(refreshToken)
-            .build();
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 
     public TokenDTO loginUser(LoginRequest loginRequest) {
 
-        if(loginRequest.getEmail() == null || loginRequest.getEmail().trim().isEmpty()){
+        if (loginRequest.getEmail() == null || loginRequest.getEmail().trim().isEmpty()) {
             throw new WrongParamException("Email cannot be empty");
         }
 
@@ -77,7 +76,7 @@ public class UserService {
         }
 
         User user = userRepository.findByEmail(loginRequest.getEmail())
-            .orElseThrow(()-> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         boolean isCorrect = passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
 
@@ -86,55 +85,52 @@ public class UserService {
         }
 
         String accessToken = jwtTokenProvider.generateAccessToken(
-            user.getId(),
-            user.getEmail(),
-            user.getUsername(),
-            user.getRoles(),
-            false
-        );
+                user.getId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getRoles(),
+                false);
 
         String refreshToken = jwtTokenProvider.generateRefreshToken(user.getEmail());
 
         log.info("(loginUser) User registered successfully: {}", loginRequest.getEmail());
         return TokenDTO.builder()
-            .accessToken(accessToken)
-            .refreshToken(refreshToken)
-            .build();
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 
-    public TokenDTO refreshTokens(String refreshToken){
-        
-        if(refreshToken == null || refreshToken.trim().isEmpty()){
+    public TokenDTO refreshTokens(String refreshToken) {
+
+        if (refreshToken == null || refreshToken.trim().isEmpty()) {
             throw new WrongParamException("Refresh token cannot be empty");
         }
 
-        if(!jwtTokenProvider.validateRefreshToken(refreshToken)){
+        if (!jwtTokenProvider.validateRefreshToken(refreshToken)) {
             throw new InvalidRefreshTokenException("Invalid refresh token");
         }
 
-        
         String email = jwtTokenProvider.getEmailFromRefreshToken(refreshToken);
-        
+
         userDetailsServiceImpl.loadUserByUsername(email);
 
         User user = userRepository.findByEmail(email)
-            .orElseThrow(() -> new UserNotFoundException("User not found: " + email));
+                .orElseThrow(() -> new UserNotFoundException("User not found: " + email));
 
         String newAccessToken = jwtTokenProvider.generateAccessToken(
-            user.getId(),
-            user.getEmail(),
-            user.getUsername(),
-            user.getRoles(),
-            false
-        );
+                user.getId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getRoles(),
+                false);
 
         String newRefreshToken = jwtTokenProvider.generateRefreshToken(email);
 
         log.info("(refreshTokens) User tokens refresh successfully: {}", user.getEmail());
         return TokenDTO.builder()
-            .accessToken(newAccessToken)
-            .refreshToken(newRefreshToken)
-            .build();
+                .accessToken(newAccessToken)
+                .refreshToken(newRefreshToken)
+                .build();
 
     }
 

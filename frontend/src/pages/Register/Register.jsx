@@ -1,117 +1,49 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { Card, message } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import RegisterForm from '../../components/Auth/RegisterForm';
+import { authService } from '../../services/authService';
+import './Register.css';
 
-const Register = () => {
-  const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+const RegisterPage = () => {
+    const [loading, setLoading] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
-  const { register } = useAuth();
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    const handleRegister = async (formData) => {
+        setLoading(true);
+        try {
+            await authService.register(formData);
+            messageApi.success('Регистрация прошла успешно!');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+            setTimeout(() => {
+                globalThis.location.href = '/dashboard';
+            }, 1000);
+        } catch (error) {
+            messageApi.error(error.response?.data?.message || 'Ошибка регистрации');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    if (userData.password !== userData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
+    return (
+        <div className="register-container">
+            {contextHolder}
+            <Card className="register-card">
+                <div className="register-header">
+                    <div className="register-icon">
+                        <UserOutlined />
+                    </div>
+                    <h1 className="register-title">Регистрация</h1>
+                    <p className="register-subtitle">Введите ваши учетные данные</p>
+                </div>
 
-    setLoading(true);
-
-    try {
-      await register({
-        username: userData.username,
-        email: userData.email,
-        password: userData.password
-      });
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="auth-container">
-      <form onSubmit={handleSubmit} className="auth-form">
-        <h2>Register</h2>
-
-        {error && <div className="error-message">{error}</div>}
-
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={userData.username}
-            onChange={handleChange}
-            required
-          />
+                <RegisterForm
+                    onRegister={handleRegister}
+                    loading={loading}
+                />
+            </Card>
         </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={userData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={userData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={userData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <button type="submit" disabled={loading} className="btn-primary">
-          {loading ? 'Creating Account...' : 'Register'}
-        </button>
-
-        <p className="auth-link">
-          Already have an account? <Link to="/login">Login here</Link>
-        </p>
-      </form>
-    </div>
-  );
+    );
 };
 
-export default Register;
+export default RegisterPage;

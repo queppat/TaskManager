@@ -14,11 +14,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskDTO {
-    
+
     private Long id;
     private Long ownerId;
     private String title;
     private String description;
+    private LocalDateTime createdAt;
     private LocalDateTime deadline;
     private TaskStatus status;
 }

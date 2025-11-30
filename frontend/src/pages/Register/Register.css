@@ -1,0 +1,77 @@
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.register-card .ant-card-body {
+    padding: 40px;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.register-icon {
+    font-size: 48px;
+    color: #1890ff;
+    margin-bottom: 16px;
+}
+
+.register-title {
+    margin: 0;
+    color: #262626;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.register-subtitle {
+    color: #8c8c8c;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+}
+
+.register-button {
+    height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.register-footer {
+    text-align: center;
+    color: #8c8c8c;
+}
+
+.login-link {
+    color: #1890ff;
+    font-weight: 500;
+}
+
+.login-link:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .register-card .ant-card-body {
+        padding: 24px;
+    }
+
+    .register-icon {
+        font-size: 40px;
+    }
+
+    .register-title {
+        font-size: 20px;
+    }
+}
