@@ -50,6 +50,6 @@ jobs:
           args: |
             -Dsonar.projectKey=queppat_TaskManager
             -Dsonar.organization=queppat
-            -Dsonar.sources=backend/task-manager/src/main/java,frontend/src
+            -Dsonar.sources=backend/task-manager/src/main/java,frontend/src,frontend-angular/src
             -Dsonar.java.binaries=backend/task-manager/target/classes
             -Dsonar.exclusions=**/node_modules/**,**/target/**,**/*.md,**/test/**
