@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -45,6 +45,8 @@ export class TaskModalComponent implements OnInit, OnChanges {
   @Output() cancelled = new EventEmitter<void>();
   @Output() save = new EventEmitter<any>();
 
+  @ViewChild('modalCard') modalCard!: ElementRef;
+
   taskForm: FormGroup;
   minDate = new Date();
 
@@ -76,15 +78,31 @@ export class TaskModalComponent implements OnInit, OnChanges {
       }
     }
 
-    if (changes['visible'] && this.visible) {
-      this.taskForm.get('time')?.valueChanges.subscribe(() => {
-        this.taskForm.get('deadline')?.updateValueAndValidity();
-      });
+    if (changes['visible']) {
+      if (changes['visible'].currentValue && this.visible) {
+        setTimeout(() => {
+          if (this.modalCard?.nativeElement) {
+            this.modalCard.nativeElement.focus();
+          }
+        }, 100);
+
+        this.taskForm.get('time')?.valueChanges.subscribe(() => {
+          this.taskForm.get('deadline')?.updateValueAndValidity();
+        });
+      }
+    }
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  handleEscapeKey(event: Event): void {
+    if (this.visible) {
+      event.preventDefault();
+      this.handleCancel();
     }
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+    if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
       event.preventDefault();
       this.handleCancel();
     }
