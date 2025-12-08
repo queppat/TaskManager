@@ -1,0 +1,39 @@
+<div class="dashboard-container">
+  <app-task-header (logout)="handleLogout()"></app-task-header>
+
+  <main class="dashboard-content">
+    <div class="content-wrapper">
+      <app-task-stats-panel [totalTasks]="totalTasks" [completedTasks]="completedTasks" [pendingTasks]="pendingTasks"
+        [inProgressTasks]="inProgressTasks">
+      </app-task-stats-panel>
+
+      <mat-card class="tasks-card">
+        <mat-card-header>
+          <mat-card-title>Задачи</mat-card-title>
+          <button mat-raised-button color="primary" (click)="handleNewTask()" class="new-task-button">
+            <mat-icon>add</mat-icon>
+            <span>Новая задача</span>
+          </button>
+        </mat-card-header>
+
+        <mat-card-content>
+          <app-task-filters (filtersChange)="handleFiltersChange($event)">
+          </app-task-filters>
+
+          <app-task-table [tasks]="tasks" [loading]="loading" (edit)="handleEdit($event)"
+            (remove)="handleDelete($event)" (view)="handleView($event)">
+          </app-task-table>
+
+          <app-task-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalTasks]="totalTasks"
+            [showTotal]="true" [showQuickJumper]="true" [align]="'right'" [pageSizeOptions]="[5, 10, 20, 50]"
+            (pageChange)="onPageChange($event)" (pageSizeChange)="onPageSizeChange($event)">
+          </app-task-pagination>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </main>
+
+  <app-task-modal [visible]="modalVisible" [task]="editingTask" [viewMode]="viewMode" [loading]="modalLoading"
+    (cancelled)="handleModalCancel()" (save)="handleSubmit($event)">
+  </app-task-modal>
+</div>
