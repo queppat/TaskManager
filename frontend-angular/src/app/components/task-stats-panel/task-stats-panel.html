@@ -1,0 +1,29 @@
+<div class="stats-panel">
+  <mat-card class="stats-card" appearance="outlined">
+    <div class="stat-content">
+      <div class="stat-title">Всего задач</div>
+      <div class="stat-value" style="color: #1890ff;">{{ totalTasks }}</div>
+    </div>
+  </mat-card>
+
+  <mat-card class="stats-card" appearance="outlined">
+    <div class="stat-content">
+      <div class="stat-title">Выполнено</div>
+      <div class="stat-value" style="color: #52c41a;">{{ completedTasks }}</div>
+    </div>
+  </mat-card>
+
+  <mat-card class="stats-card" appearance="outlined">
+    <div class="stat-content">
+      <div class="stat-title">В работе</div>
+      <div class="stat-value" style="color: #faad14;">{{ inProgressTasks }}</div>
+    </div>
+  </mat-card>
+
+  <mat-card class="stats-card" appearance="outlined">
+    <div class="stat-content">
+      <div class="stat-title">В ожидании</div>
+      <div class="stat-value" style="color: #ff4d4f;">{{ pendingTasks }}</div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,74 @@
+<div class="table-container">
+  <table mat-table [dataSource]="tasks" class="mat-elevation-z8 task-table">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Название</th>
+      <td mat-cell *matCellDef="let task">
+        <button mat-button color="primary" (click)="onView(task)" class="task-title-button">
+          {{ task.title }}
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Описание</th>
+      <td mat-cell *matCellDef="let task">
+        <div class="task-description">
+          {{ task.description || '-' }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Статус</th>
+      <td mat-cell *matCellDef="let task">
+        <mat-chip class="status-chip" [style.background-color]="statusColors[task.status]">
+          <mat-icon class="status-icon">{{ getStatusIcon(task.status) }}</mat-icon>
+          {{ statusLabels[task.status] }}
+        </mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+      <td mat-cell *matCellDef="let task">
+        {{ formatDate(task.createdAt) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef>Срок</th>
+      <td mat-cell *matCellDef="let task">
+        {{ formatDate(task.deadline) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Действия</th>
+      <td mat-cell *matCellDef="let task">
+        <div class="actions-container">
+          <button mat-icon-button color="primary" (click)="onView(task)" matTooltip="Просмотр">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="onEdit(task)" matTooltip="Редактировать">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDeleteDialog(task)" matTooltip="Удалить">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div *ngIf="loading" class="loading-overlay">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && tasks.length === 0" class="empty-table">
+    <mat-icon class="empty-icon">assignment</mat-icon>
+    <p>Нет задач</p>
+  </div>
+</div>

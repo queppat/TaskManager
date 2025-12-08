@@ -1,0 +1,132 @@
+<div class="modal-overlay" *ngIf="visible">
+  <mat-card #modalCard class="modal-card">
+
+    <mat-card-header>
+      <mat-card-title>
+        {{ viewMode ? 'Просмотр задачи' : (task ? 'Редактировать задачу' : 'Новая задача') }}
+      </mat-card-title>
+      <button mat-icon-button class="close-button" (click)="handleCancel()" aria-label="Закрыть">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="viewMode" class="view-mode">
+        <mat-grid-list cols="1" rowHeight="70px">
+          <mat-grid-tile>
+            <div class="view-field">
+              <mat-label>Название</mat-label>
+              <div class="view-value title-value">{{ task?.title }}</div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="view-field">
+              <mat-label>Описание</mat-label>
+              <div class="view-value description-value">{{ task?.description || '—' }}</div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="view-field">
+              <mat-label>Статус</mat-label>
+              <div class="view-value">
+                <span class="status-tag" [ngClass]="getStatusClass(task?.status || '')">
+                  {{ getStatusLabel(task?.status || '') }}
+                </span>
+              </div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="view-field">
+              <mat-label>Срок выполнения</mat-label>
+              <div class="view-value">{{ formatDate(task?.deadline) }}</div>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="view-field">
+              <mat-label>Дата создания</mat-label>
+              <div class="view-value">{{ formatDate(task?.createdAt) }}</div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+
+      <form *ngIf="!viewMode" [formGroup]="taskForm" (ngSubmit)="handleSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Название *</mat-label>
+          <input matInput formControlName="title" placeholder="Введите название задачи" maxlength="100">
+          <mat-hint align="end">
+            {{ taskForm.get('title')?.value?.length || 0 }}/100
+          </mat-hint>
+          <mat-error *ngIf="taskForm.get('title')?.hasError('required')">
+            Введите название задачи
+          </mat-error>
+          <mat-error *ngIf="taskForm.get('title')?.hasError('maxlength')">
+            Название не может быть больше 100 символов
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Описание</mat-label>
+          <textarea matInput formControlName="description" rows="4" placeholder="Введите описание задачи"
+            maxlength="255">
+          </textarea>
+          <mat-hint align="end">
+            {{ taskForm.get('description')?.value?.length || 0 }}/255
+          </mat-hint>
+          <mat-error *ngIf="taskForm.get('description')?.hasError('maxlength')">
+            Описание не может быть больше 255 символов
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Статус *</mat-label>
+          <mat-select formControlName="status" placeholder="Выберите статус">
+            <mat-option value="TODO">Сделать</mat-option>
+            <mat-option value="IN_PROGRESS">В процессе</mat-option>
+            <mat-option *ngIf="task" value="DONE">Выполнено</mat-option>
+          </mat-select>
+          <mat-error *ngIf="taskForm.get('status')?.hasError('required')">
+            Выберите статус
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Срок выполнения *</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="deadline" [min]="minDate"
+            placeholder="DD.MM.YYYY HH:mm">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          <mat-error *ngIf="deadlineControl?.hasError('required')">
+            Пожалуйста, выберите срок выполнения
+          </mat-error>
+          <mat-error *ngIf="deadlineControl?.hasError('futureDate')">
+            Дата и время должны быть не раньше текущего момента
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Время</mat-label>
+          <input matInput type="time" formControlName="time">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button type="button" (click)="handleCancel()">
+        {{ viewMode ? 'Закрыть' : 'Отмена' }}
+      </button>
+
+      <button *ngIf="!viewMode" mat-raised-button color="primary" type="button" [disabled]="taskForm.invalid || loading"
+        (click)="handleSubmit()">
+        <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+        <span *ngIf="!loading">{{ task ? 'Обновить' : 'Создать' }}</span>
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

@@ -1,0 +1,92 @@
+<div class="home-page">
+  <section class="hero-section">
+    <div class="hero-wrapper">
+      <div class="hero-content">
+        <h1 class="hero-title">Task Manager</h1>
+        <h3 class="hero-subtitle">Простое и эффективное управление вашими задачами</h3>
+        <p class="hero-description">
+          Современное веб‑приложение для организации работы. Создавайте задачи, отслеживайте прогресс и повышайте
+          продуктивность.
+        </p>
+
+        <div class="hero-actions">
+          <button mat-raised-button color="primary" class="start-button" routerLink="/register">
+            <mat-icon>play_circle</mat-icon>
+            <span>Начать</span>
+          </button>
+          <button mat-stroked-button color="primary" class="login-button" routerLink="/login">
+            <span>Войти в аккаунт</span>
+            <mat-icon>arrow_right_alt</mat-icon>
+          </button>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tech-label">Технологии: </span>
+          <div class="tech-tags">
+            <span *ngFor="let tech of technologies" class="tech-tag" [style.backgroundColor]="getTechColor(tech.color)">
+              {{ tech.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="task-preview-card">
+          <div class="preview-header">
+            <strong>Мои задачи</strong>
+          </div>
+          <div class="preview-content">
+            <div *ngFor="let task of ['Завершить проект', 'Подготовить отчет', 'Изучить новые технологии']"
+              class="preview-task">
+              <mat-icon class="task-icon" [style.color]="'#52c41a'">check_circle</mat-icon>
+              <span>{{ task }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <section class="features-section">
+    <h2 class="features-title">Почему Task Manager?</h2>
+    <div class="features-grid">
+      <div *ngFor="let feature of features" class="feature-card-wrapper">
+        <mat-card class="feature-card" appearance="outlined">
+          <div class="feature-icon">
+            <mat-icon [style.color]="feature.color">{{ feature.icon }}</mat-icon>
+          </div>
+          <mat-card-header>
+            <mat-card-title>{{ feature.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ feature.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <section class="cta-section">
+    <mat-card class="cta-card">
+      <div class="cta-content">
+        <h2 class="cta-title">Готовы начать?</h2>
+        <p class="cta-description">
+          Присоединяйтесь к пользователям, которые уже повысили продуктивность с Task Manager
+        </p>
+        <div class="cta-actions">
+          <a mat-raised-button color="primary" class="cta-button" routerLink="/register">
+            Создать аккаунт
+          </a>
+        </div>
+      </div>
+    </mat-card>
+  </section>
+
+  <footer class="home-footer">
+    <p>© 2025 Task Manager. Все права защищены.</p>
+  </footer>
+</div>

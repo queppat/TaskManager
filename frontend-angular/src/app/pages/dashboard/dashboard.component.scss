@@ -1,0 +1,116 @@
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+
+  .dashboard-content {
+    padding: 24px;
+
+    .content-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+}
+
+.tasks-card {
+  margin-top: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  background: #ffffff;
+
+  mat-card-header {
+    padding: 16px 16px 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    mat-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #262626;
+      margin: 0;
+      flex: 1;
+    }
+
+    .new-task-button {
+      height: 40px;
+      font-weight: 500;
+      background-color: #1890ff;
+      margin-top: 8px;
+      margin-right: 40px;
+
+      &:hover {
+        background-color: #40a9ff;
+      }
+
+      &:active {
+        background-color: #096dd9;
+      }
+
+      mat-icon {
+        margin-right: 8px;
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    .dashboard-content {
+      padding: 16px;
+    }
+  }
+
+  .tasks-card {
+    margin-top: 16px;
+
+    mat-card-header {
+      padding: 16px 16px 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+
+      mat-card-title {
+        font-size: 18px;
+      }
+
+      .new-task-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .dashboard-container {
+    .dashboard-content .content-wrapper {
+      max-width: 1400px;
+    }
+  }
+
+  .task-header .header-content {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .dashboard-container {
+    .dashboard-content .content-wrapper {
+      max-width: 1400px;
+    }
+  }
+
+  .task-header .header-content {
+    max-width: 1400px;
+  }
+}

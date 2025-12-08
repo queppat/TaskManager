@@ -1,0 +1,100 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <mat-icon class="register-icon">person_add</mat-icon>
+      <h1 class="register-title">Регистрация</h1>
+      <p class="register-subtitle">Создайте новый аккаунт</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+      <div class="form-field-wrapper">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Имя пользователя</mat-label>
+          <mat-icon matPrefix class="form-icon">person</mat-icon>
+          <input matInput formControlName="username" placeholder="username">
+        </mat-form-field>
+        <div class="form-error" *ngIf="shouldShowError('username')">
+          <span *ngIf="registerForm.get('username')?.hasError('required')">
+            Пожалуйста, введите ваше имя!
+          </span>
+          <span *ngIf="registerForm.get('username')?.hasError('minlength')">
+            Имя должно содержать минимум 2 символа!
+          </span>
+        </div>
+      </div>
+
+      <div class="form-field-wrapper">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix class="form-icon">email</mat-icon>
+          <input matInput formControlName="email" type="email" placeholder="example@mail.com">
+        </mat-form-field>
+        <div class="form-error" *ngIf="shouldShowError('email')">
+          <span *ngIf="registerForm.get('email')?.hasError('required')">
+            Пожалуйста, введите ваш email!
+          </span>
+          <span *ngIf="registerForm.get('email')?.hasError('email')">
+            Неверный формат email!
+          </span>
+        </div>
+      </div>
+
+      <div class="form-field-wrapper">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Пароль</mat-label>
+          <mat-icon matPrefix class="form-icon">lock</mat-icon>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Пароль">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div class="form-error" *ngIf="shouldShowError('password')">
+          <span *ngIf="registerForm.get('password')?.hasError('required')">
+            Пожалуйста, введите пароль!
+          </span>
+          <span *ngIf="registerForm.get('password')?.hasError('minlength')">
+            Пароль должен содержать минимум 6 символов!
+          </span>
+        </div>
+      </div>
+
+      <div class="form-field-wrapper">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Подтверждение пароля</mat-label>
+          <mat-icon matPrefix class="form-icon">lock</mat-icon>
+          <input matInput formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'"
+            placeholder="Подтвердите пароль">
+          <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
+            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div class="form-error" *ngIf="shouldShowError('confirmPassword')">
+          <span *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+            Пожалуйста, подтвердите пароль!
+          </span>
+          <span *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch')">
+            Пароли не совпадают!
+          </span>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" class="register-button" type="submit" [disabled]="loading">
+        <span *ngIf="!loading">Зарегистрироваться</span>
+        <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      </button>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">или</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="register-footer">
+        <span class="login-text">Уже есть аккаунт? </span>
+        <a routerLink="/login" class="login-link">
+          Войти
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

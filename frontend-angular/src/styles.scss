@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f5f5f5;
+}
+
+.success-snackbar {
+  background-color: #52c41a !important;
+}
+
+.error-snackbar {
+  background-color: #ff4d4f !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mt-24 {
+  margin-top: 24px;
+}
+
+.mb-24 {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 8px;
+  }
+}

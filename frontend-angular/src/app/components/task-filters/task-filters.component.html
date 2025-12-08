@@ -1,0 +1,44 @@
+<div class="filters-container" [formGroup]="filterForm">
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Поиск по названию</mat-label>
+    <input matInput formControlName="title" placeholder="Поиск по названию...">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Статус</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="">Все</mat-option>
+      <mat-option value="TODO">В ожидании</mat-option>
+      <mat-option value="IN_PROGRESS">В работе</mat-option>
+      <mat-option value="DONE">Выполнено</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Срок выполнения</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="deadline">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button mat-icon-button matSuffix *ngIf="filterForm.get('deadline')?.value"
+      (click)="filterForm.get('deadline')?.setValue(null)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Сортировка</mat-label>
+    <mat-select formControlName="sort">
+      <mat-option value="createdAt,desc">По дате создания (новые)</mat-option>
+      <mat-option value="createdAt,asc">По дате создания (старые)</mat-option>
+      <mat-option value="deadline,asc">По сроку (ближайшие)</mat-option>
+      <mat-option value="deadline,desc">По сроку (дальние)</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="filter-actions">
+    <button mat-button (click)="onReset()" class="reset-button">
+      <mat-icon>refresh</mat-icon>
+      <span>Сбросить</span>
+    </button>
+  </div>
+</div>
