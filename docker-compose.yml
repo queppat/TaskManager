@@ -51,6 +51,8 @@ services:
     container_name: taskmanager-frontend-angular-dev
     env_file:
       - .env
+    environment:
+      NG_APP_API_URL: http://backend:8080/api
     ports:
       - "${FRONTEND_ANGULAR_PORT}:4200"
     depends_on:
