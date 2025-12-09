@@ -10,9 +10,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
 
+export type TaskStatus = '' | 'TODO' | 'IN_PROGRESS' | 'DONE';
+
 export interface TaskFilterState {
   title: string;
-  status: '' | 'TODO' | 'IN_PROGRESS' | 'DONE';
+  status: TaskStatus;
   sort: string;
   deadline?: Date | null;
 }
@@ -57,7 +59,7 @@ export class TaskFilters implements OnInit, OnDestroy {
       .subscribe(value => {
         const filters: TaskFilterState = {
           title: value.title?.trim() || '',
-          status: (value.status as any) || '',
+          status: this.getValidStatus(value.status),
           sort: value.sort || 'createdAt,desc',
           deadline: value.deadline || null
         };
@@ -79,5 +81,15 @@ export class TaskFilters implements OnInit, OnDestroy {
       sort: 'createdAt,desc',
       deadline: null
     });
+  }
+
+  private getValidStatus(status: any): '' | 'TODO' | 'IN_PROGRESS' | 'DONE' {
+    const validStatuses: Array<'' | 'TODO' | 'IN_PROGRESS' | 'DONE'> =
+      ['', 'TODO', 'IN_PROGRESS', 'DONE'];
+
+    if (validStatuses.includes(status)) {
+      return status;
+    }
+    return '';
   }
 }

@@ -28,19 +28,38 @@ jobs:
           cd backend/task-manager
           mvn -B clean package
           
-      - name: Setup Node.js for Frontend
+      - name: Setup Node.js for React Frontend
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Frontend dependencies
+      - name: Install React Frontend dependencies
         run: |
           cd frontend
           npm install
+
       - name: Run Frontend tests with coverage
         run: |
           cd frontend
           npx vitest run src/utils/math.test.js src/tests/basic.test.js --coverage
+
+      - name: Setup Node.js for Angular Frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Angular CLI globally
+        run: npm install -g @angular/cli
+          
+      - name: Install Angular Frontend dependencies
+        run: |
+          cd frontend-angular # предполагаемая папка Angular проекта
+          npm install
+          
+      - name: Build Angular Frontend
+        run: |
+          cd frontend-angular
+          ng build --configuration production
 
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
